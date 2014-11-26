@@ -1,0 +1,11 @@
+
+<div>
+	<% if user_signed_in? %>
+		<%= image_tag current_user.avatar.url, class: "round-thumb" %>
+		<%= current_user.email %>
+		<%= link_to '登出', destroy_user_session_path, method: :delete %>
+	<% else %>
+		<%= link_to '登陆', '#' %>
+	<% end %>
+
+</div>

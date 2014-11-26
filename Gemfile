@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'https://ruby.taobao.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -37,4 +37,16 @@ gem 'spring',        group: :development
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+# Bootstrap
+gem 'bootstrap-sass', '~> 3.3.1'
+gem 'will_paginate', '~> 3.0.6'
+gem 'will_paginate-bootstrap'
+
+# devise user manager
+gem 'devise'
+
+# uploader carrierwave
+gem 'carrierwave'
+gem 'mini_magick'
 

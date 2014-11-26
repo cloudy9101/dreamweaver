@@ -13,3 +13,10 @@
  *= require_tree .
  *= require_self
  */
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+.round-thumb {
+	border-radius: 50px;
+	border: 1px solid #e5e5e5;
+}
