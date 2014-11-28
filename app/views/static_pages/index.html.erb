@@ -4,13 +4,10 @@
 		<div class="col-md-7 hots panel panel-default hidden-xs">
 			<div class="panel-body">
 				<h3>热门目标</h3>
-				<ul>
-					<li></li>
-					<li></li>
-					<li></li>
-					<li></li>
-					<li></li>
-					<li></li>
+				<ul class="list-group">
+					<% @targets.each do |target| %>
+						<%= render partial: 'targets/progress', object: target %>
+					<% end %>
 				</ul>
 			</div>
 

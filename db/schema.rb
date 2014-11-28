@@ -11,7 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141125063729) do
+ActiveRecord::Schema.define(version: 20141127022358) do
+
+  create_table "targets", force: true do |t|
+    t.string   "name"
+    t.text     "detail"
+    t.date     "start_time"
+    t.date     "finish_time"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "targets", ["user_id"], name: "index_targets_on_user_id"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

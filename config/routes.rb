@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
 
-  devise_for :users
   root 'static_pages#index'
+
+  devise_for :users
+  get 'users/:id' => 'users#show'
+
+  resources :targets
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

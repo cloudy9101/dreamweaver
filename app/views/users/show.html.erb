@@ -1,0 +1,25 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-7">
+			<% current_user.targets.each do |target| %>
+				<%= render partial: 'targets/progress', object: target %>
+			<% end %>
+		</div>
+		<div class="col-md-4 pull-right">
+			<ul class="list-group">
+				<li class="list-group-item">
+					<div class="text-center">
+						<%= image_tag current_user.avatar.url, class: "round-thumb" %>
+					</div>
+					<%= current_user.email %>
+				</li>
+				<li class="list-group-item">
+					<h3>热门</h3>
+				</li>
+				<li class="list-group-item">
+					<%= link_to '创建新目标', new_target_path %>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
