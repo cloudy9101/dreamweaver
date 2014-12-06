@@ -5,7 +5,11 @@ Rails.application.routes.draw do
   devise_for :users
   get 'users/:id' => 'users#show'
 
-  resources :targets
+  resources :targets do
+     resources :days
+  end
+
+ 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -1,13 +1,13 @@
 <% valuemax = (progress.finish_time - progress.start_time).ceil %>
 <% valuenow = (31 * 100 / valuemax).ceil %>
 <li class="list-group-item">
-	<%= progress.name %> | <%= progress.detail %>
+	<%= link_to progress.name, target_path(progress) %> | <%= progress.detail %>
 	<div class="progress">
 		<div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="<%= valuenow %>" aria-valuemin="0" aria-valuemax="<%= valuemax %>" style="width: <%= valuenow %>%;">
 			<span><%= valuenow %>% Complete</span>
 		</div>
 	</div>
-	<% if progress.user_id == current_user.id %>
+	<% if !current_user.nil? && progress.user_id == current_user.id %>
 		<%= link_to '删除', target_path(progress), method: :delete %>
 	<% end %>
 </li>

@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141127022358) do
+ActiveRecord::Schema.define(version: 20141128070320) do
+
+  create_table "days", force: true do |t|
+    t.date     "date_at"
+    t.text     "comment"
+    t.integer  "target_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "days", ["target_id"], name: "index_days_on_target_id"
 
   create_table "targets", force: true do |t|
     t.string   "name"

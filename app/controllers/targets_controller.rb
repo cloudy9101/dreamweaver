@@ -2,6 +2,12 @@ class TargetsController < ApplicationController
   def index
   end
 
+  def show
+    @new_user = User.new
+    @target = Target.find(params[:id])
+    @today = @target.days.new
+  end
+
   def new
     @new_target = Target.new
   end

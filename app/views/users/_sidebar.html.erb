@@ -1,0 +1,80 @@
+<% if signed_in? %>
+<div class="col-md-4 pull-right">
+	<ul class="list-group">
+		<li class="list-group-item">
+			<div class="text-center">
+				<%= image_tag current_user.avatar.url, class: "round-thumb" %>
+			</div>
+			<%= current_user.email %>
+		</li>
+		<li class="list-group-item">
+			<%= link_to '创建新目标', new_target_path %>
+			<%= link_to '登出', destroy_user_session_path, method: :delete %>
+		</li>
+		<li class="list-group-item">
+			<h3>热门</h3>
+		</li>
+	</ul>
+</div>
+<% else %>
+<div class="col-md-4 sign-up panel panel-default pull-right">
+	<div class="panel-body">
+		<ul class="nav nav-tabs" role="tablist">
+			<li role="presentation" class="active"><a href="#sign-up" role="tab" data-toggle="tab">注册</a></li>
+			<li role="presentation"><a href="#sign-in" role="tab" data-toggle="tab">登陆</a></li>
+		</ul>
+		<div class="tab-content">
+			<div class="tab-pane fade in active" id="sign-up" role="tabpanel">
+				<%= form_for @new_user, url: user_registration_path(@new_user), html: { class: "form-horizontal", role: "form", multipart: true } do |f| %>
+					<div class="form-group text-center">
+						<%= image_tag "default.jpg", class: "round-thumb" %>
+					</div>
+					<div class="form-group">
+						<%= f.label :avatar, "头像", class: "col-sm-3 control-label" %>
+						<div class="col-sm-9">
+							<%= f.file_field :avatar, class: "form-control" %>
+							<%= f.hidden_field :avatar_cache %>
+						</div>
+					</div>
+					<div class="form-group">
+						<%= f.label :email, "邮箱", class: "col-sm-3 control-label" %>
+						<div class="col-sm-9">
+							<%= f.text_field :email, class: "form-control", placeholder: "Email" %>				
+						</div>
+					</div>
+					<div class="form-group">
+						<%= f.label :password, "密码", class: "col-sm-3 control-label" %>
+						<div class="col-sm-9">
+							<%= f.password_field :password, class: "form-control", placeholder: "Password" %>
+						</div>
+					</div>
+					<div class="form-group">
+						<%= f.label :password_confirmation, "确认密码", class: "col-sm-3 control-label" %>
+						<div class="col-sm-9">
+							<%= f.password_field :password_confirmation, class: "form-control", placeholder: "Password" %>
+						</div>
+					</div>
+					<%= f.submit "注册", class: "btn btn-primary col-sm-offset-5" %>
+				<% end %>
+			</div>
+			<div class="tab-pane fade" id="sign-in" role="tabpanel">
+				<%= form_for(@new_user, url: user_session_path(@new_user), html: { class: "form-horizontal" }) do |f| %>
+					<div class="form-group">
+						<%= f.label :email, "邮箱", class: "col-sm-3 control-label" %>
+						<div class="col-sm-9">
+							<%= f.email_field :email, class: "form-control" %>
+						</div>
+					</div>
+					<div class="form-group">
+						<%= f.label :password, "密码", class: "col-sm-3 control-label" %>
+						<div class="col-sm-9">
+							<%= f.password_field :password, class: "form-control" %>
+						</div>
+					</div>
+					<%= f.submit "登陆", class: "btn btn-primary col-sm-offset-5" %>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>
+<% end %>
