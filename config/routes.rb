@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root 'static_pages#index'
 
   devise_for :users
-  get 'users/:id' => 'users#show'
+  get 'users/:id' => 'users#show', as: :users
 
   resources :targets do
      resources :days

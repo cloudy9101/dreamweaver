@@ -1,0 +1,73 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="page-header"><h4>编辑资料</h4></div>
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "form-horizontal", role: "form" }) do |f| %>
+          <%= devise_error_messages! %>
+
+          <div class="form-group">
+            <%= f.label :email, "邮箱", class: "col-sm-2 control-label" %>
+            <div class="col-sm-8">
+              <p class="form-control-static"><%= current_user.email %></p>
+            </div>
+          </div>
+          <div class="form-group">
+            <%= f.label :name, "用户名", class: "col-sm-2 control-label" %>
+            <div class="col-sm-8">
+              <%= f.text_field :name, class: "form-control" %>
+            </div>
+          </div>
+          <div class="form-group">
+            <%= f.label :avatar, "头像", class: "col-sm-2 control-label" %>
+            <div class="col-sm-8">
+              <%= f.file_field :avatar %>
+            </div>
+          </div>
+          <div class="form-group">
+            <%= f.label :password, "密码", class: "col-sm-2 control-label" %>
+            <div class="col-sm-8">
+              <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+            </div>
+          </div>
+          <div class="form-group">
+            <%= f.label :password_confirmation, "密码确认", class: "col-sm-2 control-label" %>
+            <div class="col-sm-8">
+              <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
+            </div>
+          </div>
+          <div class="form-group">
+            <%= f.label :current_password, "原密码", class: "col-sm-2 control-label" %>
+            <div class="col-sm-8">
+              <%= f.password_field :current_password, autocomplete: "off", class: "form-control" %>
+            </div>
+          </div>
+          <div class="form-group">
+            <%= f.label :birth, "生日", class: "col-sm-2 control-label" %>
+            <div class="col-sm-8">
+              <%= f.date_field :birth, class: "form-control" %>
+            </div>
+          </div>
+          <div class="form-group">
+            <%= f.label :introduce, "简介", class: "col-sm-2 control-label" %>
+            <div class="col-sm-8">
+              <%= f.text_area :introduce, size: "20x10", class: "form-control" %>
+            </div>
+          </div>
+          <div class="form-group bg-warning">
+            <div class="col-sm-2 col-sm-offset-2">
+              <%= f.submit "提交", class: "btn btn-primary" %>
+            </div>
+            
+          </div>
+        <% end %>
+
+        <div class="page-header">
+          <h4>删除账号</h4>
+        </div>
+        <div class="bg-warning">
+          不希望继续使用本产品？<%= link_to "删除账号", registration_path(resource_name), data: { confirm: "确定您的操作？" }, method: :delete, class: "btn btn-danger" %> （该操作不可逆转！）
+        </div>
+    </div>
+    <%= render 'sidebar' %>
+  </div>
+</div>

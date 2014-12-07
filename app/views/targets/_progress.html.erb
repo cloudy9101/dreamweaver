@@ -1,5 +1,5 @@
 <% valuemax = (progress.finish_time - progress.start_time).ceil %>
-<% valuenow = (31 * 100 / valuemax).ceil %>
+<% valuenow = (progress.days.count * 100 / valuemax).ceil %>
 <li class="list-group-item">
 	<%= link_to progress.name, target_path(progress) %> | <%= progress.detail %>
 	<div class="progress">

@@ -4,7 +4,7 @@
 			<div class="page-header">
 				<h3><%= @target.name %></h3>
 			</div>
-			<div class="row">
+			<div>
 				<p>开始日期：<%= @target.start_time %> --- 结束时间：<%= @target.finish_time %></p>
 				<% if @target.user == current_user %>
 					<button class="btn btn-primary" type="button" data-toggle="modal" data-target="#punch">打卡</button>
@@ -35,7 +35,7 @@
 					</div>
 				<% end %>
 			</div>
-			<div class="row">
+			<div>
 				<% length = @target.finish_time - @target.start_time %>
 				<% (0..length).each do |i| %>
 					<% if @day = @target.days.find_by(date_at: "#{@target.start_time + i}") %>
