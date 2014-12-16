@@ -1,9 +1,14 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-7">
-			<div class="page-header"><h3><%= @day.date_at %></h3></div>
-			<div>
-				<p><%= @day.comment %></p>
+			<div class="page-header"><h3><span class="text-muted"><%= @day.target.name %></span>@<%= @day.date_at %></h3></div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<span class="text-muted"><%= @day.date_at %>完成情况</span>
+				</div>
+				<div class="panel-body">
+					<p><%= @day.comment %></p>
+				</div>
 			</div>
 		</div>
 		<%= render 'users/sidebar' %>

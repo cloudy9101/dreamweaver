@@ -1,13 +1,34 @@
-<% valuemax = (progress.finish_time - progress.start_time).ceil %>
-<% valuenow = (progress.days.count * 100 / valuemax).ceil %>
-<li class="list-group-item">
-	<%= link_to progress.name, target_path(progress) %> | <%= progress.detail %>
-	<div class="progress">
-		<div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="<%= valuenow %>" aria-valuemin="0" aria-valuemax="<%= valuemax %>" style="width: <%= valuenow %>%;">
-			<span><%= valuenow %>% Complete</span>
-		</div>
+<div class="panel panel-default">
+	<div class="panel-heading text-center">
+		<span class="text-muted">
+			<%= link_to progress.name, target_path(progress) %>
+		</span>
 	</div>
-	<% if !current_user.nil? && progress.user_id == current_user.id %>
-		<%= link_to '删除', target_path(progress), method: :delete %>
-	<% end %>
-</li>
+	<ul class="list-group">
+		<li class="list-group-item">
+			<div class="col-md-6" style="border-right: 1px solid #ccc">
+				<p class="text-muted">目标详情：</p>
+				<p><%= progress.detail %></p>
+			</div>
+			<div class="col-md-4" style="border-right: 1px solid #ccc">
+				<p><span class="text-muted">开始时间：</span><%= progress.start_time %></p>
+				<p><span class="text-muted">结束时间：</span><%= progress.finish_time %></p>
+			</div>
+			<div class="col-md-2">
+				<% if !current_user.nil? && progress.user == current_user %>
+					<%= link_to "删除", target_path(progress), method: :delete, data: { confirm: "确定删除？" }, class: "btn btn-danger btn-sm" %>
+				<% end %>
+			</div>
+			<div class="clear"></div>
+		</li>
+		<li class="list-group-item">
+			<div class="col-md-2">
+				<span class="text-muted">进度：</span>
+			</div>
+			<div class="col-md-10">
+				<%= render partial: "targets/progress_bar", object: progress %>
+			</div>
+			<div class="clear"></div>
+		</li>
+	</ul>
+</div>

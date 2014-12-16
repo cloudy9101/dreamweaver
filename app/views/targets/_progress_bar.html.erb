@@ -1,0 +1,7 @@
+<% valuemax = (progress_bar.finish_time - progress_bar.start_time).ceil %>
+<% valuenow = (progress_bar.days.count * 100 / valuemax).ceil %>
+<div class="progress">
+	<div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="<%= valuenow %>" aria-valuemin="0" aria-valuemax="<%= valuemax %>" style="width: <%= valuenow %>%; min-width: 20px;">
+		<span><%= valuenow %>% Complete</span>
+	</div>
+</div>

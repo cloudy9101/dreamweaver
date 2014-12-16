@@ -1,53 +1,78 @@
 <div class="container">
 	<div class="row">
-		<div class="col-md-7">
+		<div class="col-md-8">
 			<div class="page-header">
 				<h3><%= @target.name %></h3>
 			</div>
-			<div>
-				<p>开始日期：<%= @target.start_time %> --- 结束时间：<%= @target.finish_time %></p>
+			<ul class="list-group">
+				<li class="list-group-item">
+					<ul>
+						<li>开始日期：<%= @target.start_time %></li>
+						<li>结束日期：<%= @target.finish_time %></li>
+						<li>目标内容：<%= @target.detail %></li>
+					</ul>
+				</li>
+				<li class="list-group-item">
+					<p class="text-muted">完成进度：</p>
+					<%= render partial: 'targets/progress_bar', object: @target %>
+				</li>
 				<% if @target.user == current_user %>
-					<button class="btn btn-primary" type="button" data-toggle="modal" data-target="#punch">打卡</button>
-					<!-- Modal punch -->
-					<div class="modal fade" id="punch" tabindex="-1" role="dialog" aria-labelledby="punchLabel" aria-hidden="true">
-						<div class="modal-dialog">
-							<div class="modal-content">
-								<div class="modal-header">
-									<%= @target.name %>(@<%= Time.now.strftime "%Y-%m-%d" %>）
-								</div>
-								<div class="modal-body">
-									<%= form_for @today, url: target_days_path(@target), html: { class: "form-horizontal", role: "form" } do |f| %>
-										<div class="form-group">
-											<%= f.label :comment, "今日记录", class: "col-sm-2 control-label" %>
-											<div class="col-sm-10">
-												<%= f.text_area :comment, class: "form-control" %>
+							<li class="list-group-item">
+								<a class="btn btn-primary pull-right" type="button" data-toggle="modal" data-target="#punch">打卡</a>
+								<div class="clear"></div>
+								<!-- Modal punch -->
+								<div class="modal fade" id="punch" tabindex="-1" role="dialog" aria-labelledby="punchLabel" aria-hidden="true">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<%= @target.name %>(@<%= Time.now.strftime "%Y-%m-%d" %>）
+											</div>
+											<div class="modal-body">
+												<%= form_for @today, url: target_days_path(@target), html: { class: "form-horizontal", role: "form" } do |f| %>
+													<div class="form-group">
+														<%= f.label :comment, "今日记录", class: "col-sm-2 control-label" %>
+														<div class="col-sm-10">
+															<%= f.text_area :comment, class: "form-control" %>
+														</div>
+													</div>
+
+											</div>
+											<div class="modal-footer">
+													<button class="btn btn-default" type="button" data-dismiss="modal">关闭</button>
+													<%= f.submit "提交", class: "btn btn-primary" %>
+												<% end %>
 											</div>
 										</div>
-
+									</div>
 								</div>
-								<div class="modal-footer">
-										<button class="btn btn-default" type="button" data-dismiss="modal">关闭</button>
-										<%= f.submit "提交", class: "btn btn-primary" %>
-									<% end %>
-								</div>
-							</div>
-						</div>
-					</div>
-				<% end %>
-			</div>
-			<div>
-				<% length = @target.finish_time - @target.start_time %>
-				<% (0..length).each do |i| %>
-					<% if @day = @target.days.find_by(date_at: "#{@target.start_time + i}") %>
-						<%= link_to target_day_path(@target, @day) do %>
-							<button class="btn btn-info" data-toggle="tooltip" data-placement="bottom" title="<%= @target.start_time + i %>"></button>
+							</li>
 						<% end %>
-					<% else %>
-						<button class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="<%= @target.start_time + i %>"></button>
-					<% end %>
-						
-				<% end %>
+			</ul>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<span class="text-muted">打卡记录</span>
+				</div>
+				<div class="panel-body">
+					<div style="overflow-x: auto">
+						<div id="calendar" 
+							<% n = 0 %>
+							<% @target.days.each do |day| %>
+								data-date-<%= n %>="<%= day.date_at %>"
+								data-date-url-<%= n %>="<%= target_day_path(@target, day) unless day.new_record? %>"
+								<% n += 1 %>
+							<% end %>
+							></div>
+					</div>
+				</div>
 			</div>
+			<div id="today">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<span class="text-muted">完成情况：请选择打卡日期</span>
+					</div>
+				</div>
+			</div>
+			
 		</div>
 		<%= render 'users/sidebar' %>
 	</div>
