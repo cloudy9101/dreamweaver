@@ -1,0 +1,29 @@
+<% if user.errors.any? %>
+	<div class="alert alert-warning" role="alert">
+		<% user.errors.full_messages.each do |msg| %>
+			<li><%= msg %></li>
+		<% end %>
+	</div>
+<% end %>
+<%= form_for(user, url: user_session_path(user), html: { class: "form-horizontal" }) do |f| %>
+	<div class="form-group text-center">
+		<%= image_tag "default.jpg", class: "round-thumb" %>
+	</div>
+	<div class="form-group">
+		<%= f.label :email, "邮箱", class: "col-sm-3 control-label" %>
+		<div class="col-sm-9">
+			<%= f.email_field :email, class: "form-control", placeholder: "Email" %>
+		</div>
+	</div>
+	<div class="form-group">
+		<%= f.label :password, "密码", class: "col-sm-3 control-label" %>
+		<div class="col-sm-9">
+			<%= f.password_field :password, class: "form-control", placeholder: "Password" %>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-3 col-sm-offset-3">
+			<%= f.submit "登陆", class: "btn btn-primary" %>
+		</div>
+	</div>
+<% end %>

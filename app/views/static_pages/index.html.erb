@@ -1,5 +1,11 @@
 <div class="container">
-	<div class="row container">
+	<div class="row">
+		<% flash.each do |key, value| %>
+			<div class="alert alert-<%= key %>" role="alert">
+				<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+				<li><%= value %></li>
+			</div>
+		<% end %>
 		<div class="col-md-8 hots hidden-xs">
 				<div class="page-header">
 					<h3>热门目标</h3>

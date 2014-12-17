@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   root 'static_pages#index'
 
+  get 'hot' => 'static_pages#hot'
+
   devise_for :users
   get 'users/:id' => 'users#show', as: :users
 

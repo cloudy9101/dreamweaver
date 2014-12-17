@@ -5,9 +5,14 @@ class DaysController < ApplicationController
     @day = @target.days.new(day_params)
     @day.date_at = Time.now.strftime "%Y-%m-%d"
     if @target.days.find_by(date_at: Time.now.strftime("%Y-%m-%d")).nil?
-      @day.save
-      redirect_to @target
+      if @day && @day.save
+        redirect_to @target
+      else
+        flash[:error] = "内容不能为空"
+        redirect_to @target
+      end
     else
+      flash[:error] = "今日已打卡"
       redirect_to @target
     end
   end

@@ -1,0 +1,41 @@
+<%= form_for user, url: user_registration_path(user), html: { class: "form-horizontal", role: "form", multipart: true } do |f| %>
+	<div class="form-group text-center">
+		<%= image_tag "default.jpg", class: "round-thumb" %>
+	</div>
+	<div class="form-group">
+		<%= f.label :avatar, "头像", class: "col-sm-3 control-label" %>
+		<div class="col-sm-9">
+			<%= f.file_field :avatar %>
+			<%= f.hidden_field :avatar_cache %>
+		</div>
+	</div>
+	<div class="form-group">
+		<%= f.label :name, "用户名", class: "col-sm-3 control-label" %>
+		<div class="col-sm-9">
+			<%= f.text_field :name, class: "form-control", placeholder: "Username" %>
+		</div>
+	</div>
+	<div class="form-group">
+		<%= f.label :email, "邮箱", class: "col-sm-3 control-label" %>
+		<div class="col-sm-9">
+			<%= f.text_field :email, class: "form-control", placeholder: "Email" %>				
+		</div>
+	</div>
+	<div class="form-group">
+		<%= f.label :password, "密码", class: "col-sm-3 control-label" %>
+		<div class="col-sm-9">
+			<%= f.password_field :password, class: "form-control", placeholder: "Password" %>
+		</div>
+	</div>
+	<div class="form-group">
+		<%= f.label :password_confirmation, "确认密码", class: "col-sm-3 control-label" %>
+		<div class="col-sm-9">
+			<%= f.password_field :password_confirmation, class: "form-control", placeholder: "Password" %>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-3 col-sm-offset-3">
+			<%= f.submit "注册", class: "btn btn-primary" %>
+		</div>
+	</div>
+<% end %>

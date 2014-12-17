@@ -43,7 +43,7 @@
 			<ul>
 				<li>全站目标总数：<%= Target.all.count %></li>
 				<li>全站打卡天数：<%= Day.all.count %></li>
-				<li>总会员数：<%= User.all.count %></li>
+				<li>会员总数：<%= User.all.count %></li>
 			</ul>
 		</div>
 	</div>
@@ -57,72 +57,10 @@
 		</ul>
 		<div class="tab-content">
 			<div class="tab-pane fade in active" id="sign-up" role="tabpanel">
-				<%= form_for @new_user, url: user_registration_path(@new_user), html: { class: "form-horizontal", role: "form", multipart: true } do |f| %>
-					<div class="form-group text-center">
-						<%= image_tag "default.jpg", class: "round-thumb" %>
-					</div>
-					<div class="form-group">
-						<%= f.label :avatar, "头像", class: "col-sm-3 control-label" %>
-						<div class="col-sm-9">
-							<%= f.file_field :avatar %>
-							<%= f.hidden_field :avatar_cache %>
-						</div>
-					</div>
-					<div class="form-group">
-						<%= f.label :name, "用户名", class: "col-sm-3 control-label" %>
-						<div class="col-sm-9">
-							<%= f.text_field :name, class: "form-control", placeholder: "Username" %>
-						</div>
-					</div>
-					<div class="form-group">
-						<%= f.label :email, "邮箱", class: "col-sm-3 control-label" %>
-						<div class="col-sm-9">
-							<%= f.text_field :email, class: "form-control", placeholder: "Email" %>				
-						</div>
-					</div>
-					<div class="form-group">
-						<%= f.label :password, "密码", class: "col-sm-3 control-label" %>
-						<div class="col-sm-9">
-							<%= f.password_field :password, class: "form-control", placeholder: "Password" %>
-						</div>
-					</div>
-					<div class="form-group">
-						<%= f.label :password_confirmation, "确认密码", class: "col-sm-3 control-label" %>
-						<div class="col-sm-9">
-							<%= f.password_field :password_confirmation, class: "form-control", placeholder: "Password" %>
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="col-sm-3 col-sm-offset-3">
-							<%= f.submit "注册", class: "btn btn-primary" %>
-						</div>
-					</div>
-					
-				<% end %>
+				<%= render partial: 'users/registrations/sign_up', locals: { user: @new_user } %>
 			</div>
 			<div class="tab-pane fade" id="sign-in" role="tabpanel">
-				<%= form_for(@new_user, url: user_session_path(@new_user), html: { class: "form-horizontal" }) do |f| %>
-					<div class="form-group text-center">
-						<%= image_tag "default.jpg", class: "round-thumb" %>
-					</div>
-					<div class="form-group">
-						<%= f.label :email, "邮箱", class: "col-sm-3 control-label" %>
-						<div class="col-sm-9">
-							<%= f.email_field :email, class: "form-control" %>
-						</div>
-					</div>
-					<div class="form-group">
-						<%= f.label :password, "密码", class: "col-sm-3 control-label" %>
-						<div class="col-sm-9">
-							<%= f.password_field :password, class: "form-control" %>
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="col-sm-3 col-sm-offset-3">
-							<%= f.submit "登陆", class: "btn btn-primary" %>
-						</div>
-					</div>
-				<% end %>
+				<%= render partial: 'users/sessions/sign_in', locals: { user: @new_user } %>
 			</div>
 		</div>
 	</div>

@@ -1,17 +1,27 @@
 <div class="container">
 	<div class="row">
-		<div class="col-md-6 col-md-offset-3">
+		<div class="col-md-8">
+			<div class="page-header">
+				<h4>创建新目标</h4>
+			</div>
+			<% if @new_target.errors.any? %>
+				<div class="alert alert-warning" role="alert">
+					<% @new_target.errors.full_messages.each do |msg| %>
+						<li><%= msg %></li>
+					<% end %>
+				</div>
+			<% end %>
 			<%= form_for @new_target, html: { class: "form-horizontal", role: "form" } do |f| %>
 				<div class="form-group">
 					<%= f.label :name, "目标标题：", class: "col-sm-3 control-label" %>
 					<div class="col-sm-9">
-						<%= f.text_field :name, class: "form-control" %>
+						<%= f.text_field :name, class: "form-control", placeholder: "例如：锻炼身体" %>
 					</div>
 				</div>
 				<div class="form-group">
 					<%= f.label :detail, "目标描述：", class: "col-sm-3 control-label" %>
 					<div class="col-sm-9">
-						<%= f.text_area :detail, class: "form-control" %>
+						<%= f.text_area :detail, class: "form-control", size: "5x6", placeholder: "例如： 深蹲15个 平板支撑45秒 每天10组" %>
 					</div>
 				</div>
 				<div class="form-group">
@@ -29,5 +39,6 @@
 				<%= f.submit "提交", class: "btn btn-primary col-md-offset-3" %>
 			<% end %>
 		</div>
+		<%= render 'users/sidebar' %>
 	</div>
 </div>

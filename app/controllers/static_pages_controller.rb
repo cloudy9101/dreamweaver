@@ -7,4 +7,8 @@ class StaticPagesController < ApplicationController
 			@targets = Target.all.order(created_at: :desc).limit(10)
 		end
 	end
+	def hot
+		@hots = Target.all.order(created_at: :desc)
+		@new_user = User.new
+	end
 end
