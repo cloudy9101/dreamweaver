@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   root 'static_pages#index'
 
   get 'hot' => 'static_pages#hot'
+  get 'category' => 'static_pages#category'
+  get 'great' => 'static_pages#great'
 
   devise_for :users
   get 'users/:id' => 'users#show', as: :users

@@ -1,9 +1,19 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-8">
-			<% @hots.each do |hot| %>
-				<%= render partial: 'targets/progress', object: hot %>
-			<% end %>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<span class="text-muted">热门目标</span>
+				</div>
+				<ul class="list-group">
+					<% @hots.each do |hot| %>
+						<li class="list-group-item">	
+							<%= render partial: 'targets/progress_b', locals: { target: hot } %>
+						</li>
+					<% end %>
+				</ul>
+			</div>
+			<%= will_paginate @hots, renderer: BootstrapPagination::Rails %>
 		</div>
 		<%= render 'users/sidebar' %>
 	</div>

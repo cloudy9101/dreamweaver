@@ -1,9 +1,16 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-8">
-			<% current_user.targets.each do |target| %>
+			<% flash.each do |key, value| %>
+				<div class="alert alert-<%= key %>" role="alert">
+					<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<li><%= value %></li>
+				</div>
+			<% end %>
+			<% @targets.each do |target| %>
 				<%= render partial: 'targets/progress', object: target %>
 			<% end %>
+			<%= will_paginate @targets, renderer: BootstrapPagination::Rails %>
 		</div>
 		<%= render 'sidebar' %>
 	</div>

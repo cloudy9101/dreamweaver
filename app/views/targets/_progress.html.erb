@@ -3,6 +3,10 @@
 		<span class="text-muted">
 			<%= link_to progress.name, target_path(progress) %>
 		</span>
+		<div class="pull-right">
+			<%= image_tag progress.user.avatar_url, class: "round-thumb", size: "20x20" %>
+			<span class="text-muted"><%= progress.user.name %></span>
+		</div>
 	</div>
 	<ul class="list-group">
 		<li class="list-group-item">

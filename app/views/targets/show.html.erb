@@ -1,9 +1,6 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-8">
-			<div class="page-header">
-				<h3><%= @target.name %></h3>
-			</div>
 			<% flash.each do |name, msg| %>
 				<div class="alert alert-warning"><%= msg %></div>
 			<% end %>
@@ -14,61 +11,66 @@
 					<% end %>
 				</div>
 			<% end %>
-			<ul class="list-group">
-				<li class="list-group-item">
-					<div class="row">
-						<div class="col-md-8" style="border-right: 1px solid #ccc">
-							<ul>
-								<li>开始日期：<%= @target.start_time %></li>
-								<li>结束日期：<%= @target.finish_time %></li>
-								<li>目标内容：<%= @target.detail %></li>
-							</ul>
-						</div>
-						<div class="col-md-4 text-center">
-							<% if @target.user == current_user %>
-								<a class="btn btn-primary btn-lg" type="button" data-toggle="modal" data-target="#punch">打卡</a>
-								<div class="clear"></div>
-								<!-- Modal punch -->
-								<div class="modal fade" id="punch" tabindex="-1" role="dialog" aria-labelledby="punchLabel" aria-hidden="true">
-									<div class="modal-dialog">
-										<div class="modal-content">
-											<div class="modal-header">
-												<%= @target.name %>(@<%= Time.now.strftime "%Y-%m-%d" %>）
-											</div>
-											<%= form_for @today, url: target_days_path(@target, @today), html: { class: "form-horizontal", role: "form" } do |f| %>
-												<div class="modal-body">
-													<% if @today.errors.any? %>
-														<div class="alert alert-warning" role="alert">
-															<% @today.errors.full_messages.each do |msg| %>
-																<li><%= msg %></li>
-															<% end %>
-														</div>
-													<% end %>
-													<div class="form-group">
-														<%= f.label :comment, "今日记录", class: "col-sm-2 control-label" %>
-														<div class="col-sm-10">
-															<%= f.text_area :comment, class: "form-control" %>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4><%= @target.name %></h4>
+				</div>
+			
+				<ul class="list-group">
+					<li class="list-group-item">
+						<div class="row">
+							<div class="col-md-8" style="border-right: 1px solid #ccc">
+								<ul>
+									<li>开始日期：<%= @target.start_time %></li>
+									<li>结束日期：<%= @target.finish_time %></li>
+									<li>目标内容：<%= @target.detail %></li>
+								</ul>
+							</div>
+							<div class="col-md-4 text-center">
+								<% if @target.user == current_user %>
+									<a class="btn btn-primary btn-lg" type="button" data-toggle="modal" data-target="#punch">打卡</a>
+									<div class="clear"></div>
+									<!-- Modal punch -->
+									<div class="modal fade" id="punch" tabindex="-1" role="dialog" aria-labelledby="punchLabel" aria-hidden="true">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<div class="modal-header">
+													<%= @target.name %>(@<%= Time.now.strftime "%Y-%m-%d" %>）
+												</div>
+												<%= form_for @today, url: target_days_path(@target, @today), html: { class: "form-horizontal", role: "form" } do |f| %>
+													<div class="modal-body">
+														<% if @today.errors.any? %>
+															<div class="alert alert-warning" role="alert">
+																<% @today.errors.full_messages.each do |msg| %>
+																	<li><%= msg %></li>
+																<% end %>
+															</div>
+														<% end %>
+														<div class="form-group">
+															<%= f.label :comment, "今日记录", class: "col-sm-2 control-label" %>
+															<div class="col-sm-10">
+																<%= f.text_area :comment, class: "form-control" %>
+															</div>
 														</div>
 													</div>
-												</div>
-												<div class="modal-footer">
-														<button class="btn btn-default" type="button" data-dismiss="modal">关闭</button>
-														<%= f.submit "提交", class: "btn btn-primary" %>
-												</div>
-											<% end %>
+													<div class="modal-footer">
+															<button class="btn btn-default" type="button" data-dismiss="modal">关闭</button>
+															<%= f.submit "提交", class: "btn btn-primary" %>
+													</div>
+												<% end %>
+											</div>
 										</div>
 									</div>
-								</div>
-							<% end %>
+								<% end %>
+							</div>
 						</div>
-					</div>
-				</li>
-				<li class="list-group-item">
-					<p class="text-muted">完成进度：</p>
-					<%= render partial: 'targets/progress_bar', object: @target %>
-				</li>
-				
-			</ul>
+					</li>
+					<li class="list-group-item">
+						<p class="text-muted">完成进度：</p>
+						<%= render partial: 'targets/progress_bar', object: @target %>
+					</li>	
+				</ul>
+			</div>
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<span class="text-muted">打卡记录</span>

@@ -37,6 +37,6 @@ class TargetsController < ApplicationController
 
   private
     def target_params
-      params.require(:target).permit(:name, :detail, :start_time, :finish_time)
+      params.require(:target).permit(:name, :detail, :start_time, :finish_time, :category)
     end
 end

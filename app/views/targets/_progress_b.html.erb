@@ -1,0 +1,18 @@
+<div class="row">
+	<div class="col-md-2 text-center" style="border-right: 1px solid #ccc">
+		<%= image_tag target.user.avatar_url, class: "round-thumb", size: "40x40" %>
+		<p class="text-muted"><%= target.user.name %></p>
+	</div>
+	<div class="col-md-10">
+		<h5><span class="glyphicon glyphicon-record text-muted"></span> <%= link_to target.name, target_path(target) %></h5>
+		<div class="row">
+			<div class="col-md-2">
+				<span class="text-muted">进度：</span>
+			</div>
+			<div class="col-md-10">
+				<%= render partial: 'targets/progress_bar', locals: { progress_bar: target } %>
+			</div>
+		</div>
+		
+	</div>
+</div>
