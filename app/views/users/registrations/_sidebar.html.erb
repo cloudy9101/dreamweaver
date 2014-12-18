@@ -13,9 +13,9 @@
 		</div>
 		<div class="panel-body">
 			<ul>
-				<li>生日：<%= current_user.birth %></li>
+				<li>生日：<%= current_user.birth.strftime "%Y 年 %m 月 %d 日" unless current_user.birth.nil? %></li>
 				<li>个人目标数：<%= current_user.targets.count %></li>
-				<li>注册时间：<%= current_user.created_at.strftime "%Y-%m-%d" %></li>
+				<li>注册时间：<%= current_user.created_at.strftime "%Y 年 %m 月 %d 日" %></li>
 				<li>简介：<%= current_user.introduce %></li>
 			</ul>
 		</div>

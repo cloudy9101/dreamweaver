@@ -1,3 +1,5 @@
+<% provide(:title, @target.name) %>
+
 <div class="container">
 	<div class="row">
 		<div class="col-md-8">
@@ -35,7 +37,7 @@
 							</div>
 							<div class="col-md-4 text-center">
 								<% if @target.user == current_user %>
-									<a class="btn btn-primary btn-lg" type="button" data-toggle="modal" data-target="#punch">打卡</a>
+									<a class="btn btn-primary btn-lg" type="button" data-toggle="modal" data-target="#punch"><span class="glyphicon glyphicon-check"></span> 打卡</a>
 									<div class="clear"></div>
 									<!-- Modal punch -->
 									<div class="modal fade" id="punch" tabindex="-1" role="dialog" aria-labelledby="punchLabel" aria-hidden="true">
