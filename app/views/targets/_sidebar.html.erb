@@ -1,0 +1,49 @@
+<div class="col-md-4 pull-right">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<%= link_to "创建新目标", new_target_path, class: "btn btn-primary" %>
+			<%= link_to "我的目标", targets_path, class: "btn btn-default" %>
+		</div>
+	</div>
+	<div class="panel panel-default">
+		<div class="panel-heading text-center">
+			<span class="text-muted">人生的六个高度理论</span>
+		</div>
+		<div class="panel-body">
+			<ul>
+				<li>1.原则（个人的价值观 原则 目标）</li>
+				<li>2.愿景（3-5年的工作目标）</li>
+				<li>3.目标（1-2年的阶段性成果）</li>
+				<li>4.责任范围（工作上的角色，生活中的角色）</li>
+				<li>5.任务（需要一步以上完成的事情）</li>
+				<li>6.下一步行动（切实具体的动作）</li>
+			</ul>
+		</div>
+	</div>
+	<div class="panel panel-default">
+		<div class="panel-heading text-center">
+			<span class="text-muted">使用指南</span>
+		</div>
+		<div class="panel-body">
+			<ul>
+				<li>根据六个高度理论审视自己</li>
+				<li>根据自己的目标创建新目标</li>
+				<li>设置目标的内容和时间</li>
+				<li>每天坚持打卡</li>
+				<li>最终完成目标</li>
+			</ul>
+		</div>
+	</div>
+	<div class="panel panel-default">
+		<div class="panel-heading text-center">
+			<span class="text-muted">统计信息</span>
+		</div>
+		<div class="panel-body">
+			<ul>
+				<li>全站目标总数：<%= Target.all.count %></li>
+				<li>全站打卡天数：<%= Day.all.count %></li>
+				<li>会员总数：<%= User.all.count %></li>
+			</ul>
+		</div>
+	</div>
+</div>

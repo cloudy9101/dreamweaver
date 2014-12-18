@@ -7,7 +7,7 @@
 		<h5><span class="glyphicon glyphicon-record text-muted"></span> <%= link_to target.name, target_path(target) %></h5>
 		<div class="row">
 			<div class="col-md-2">
-				<span class="text-muted">进度：</span>
+				<span class="text-muted pull-right">进度：</span>
 			</div>
 			<div class="col-md-10">
 				<%= render partial: 'targets/progress_bar', locals: { progress_bar: target } %>

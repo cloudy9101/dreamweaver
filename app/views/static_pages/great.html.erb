@@ -15,7 +15,8 @@
 					<% end %>
 				</ul>
 			</div>
+			<%= will_paginate @targets, renderer: BootstrapPagination::Rails %>
 		</div>
-		<%= render 'users/sidebar' %>
+		<%= render 'sidebar' %>
 	</div>
 </div>

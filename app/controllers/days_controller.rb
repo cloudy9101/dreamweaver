@@ -1,4 +1,5 @@
 class DaysController < ApplicationController
+  before_action :authenticate_user!
 
   def create
     @target = Target.find(params[:target_id])

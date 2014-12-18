@@ -7,9 +7,18 @@
 					<li><%= value %></li>
 				</div>
 			<% end %>
-			<% @targets.each do |target| %>
-				<%= render partial: 'targets/progress', object: target %>
-			<% end %>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<span class="text-muted"><%= @user.name %>的目标列表</span>
+				</div>
+				<ul class="list-group">
+					<% @targets.each do |target| %>
+						<li class="list-group-item">
+							<%= render partial: 'targets/progress_b', locals: { target: target } %>
+						</li>
+					<% end %>
+				</ul>
+			</div>
 			<%= will_paginate @targets, renderer: BootstrapPagination::Rails %>
 		</div>
 		<%= render 'sidebar' %>

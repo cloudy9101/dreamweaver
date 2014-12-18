@@ -1,5 +1,8 @@
 class TargetsController < ApplicationController
+  before_action :authenticate_user!
+
   def index
+    @targets = current_user.targets.paginate(:page => params[:page], :per_page => 3)
   end
 
   def show
