@@ -26,7 +26,7 @@ class StaticPagesController < ApplicationController
 			@cate = "生活"
 		when 3
 			@cate = "健康"
-		end
+		end unless @targets.first.nil?
 
 		@new_user = User.new
 	end
