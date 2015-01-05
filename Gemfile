@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'https://ruby.taobao.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -54,3 +54,11 @@ gem 'mini_magick'
 gem 'rails_12factor', group: :production
 
 ruby "2.1.5"
+
+group :test do
+	gem 'capybara'
+end
+
+group :development, :test do
+	gem 'factory_girl_rails'
+end

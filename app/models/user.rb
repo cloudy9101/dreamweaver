@@ -7,4 +7,5 @@ class User < ActiveRecord::Base
 
          has_many :targets
          validates :name, presence: true
+         validates :name, uniqueness: true
 end

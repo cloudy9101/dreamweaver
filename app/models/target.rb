@@ -15,7 +15,7 @@ class Target < ActiveRecord::Base
   end
 
   def finish_time_cannot_earlier_than_start_time
-  	if finish_time < start_time
+  	if start_time.present? && finish_time.present? && finish_time < start_time
   		errors.add(:finish_time, "结束时间不能早于开始时间")
   	end
   end
