@@ -2,20 +2,17 @@ class DaysController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    @target = Target.find(params[:target_id])
-    @day = @target.days.new(day_params)
+    @day = Day.new(day_params)
+    @day.target = Target.find(params[:target_id])
+    @day.user = current_user
     @day.date_at = Time.now.strftime "%Y-%m-%d"
-    if @target.days.find_by(date_at: Time.now.strftime("%Y-%m-%d")).nil?
-      if @day && @day.save
-        redirect_to @target
-      else
-        flash[:error] = "内容不能为空"
-        redirect_to @target
-      end
+
+    if @day && @day.save
+      flash[:success] = "恭喜您，打卡成功。"
     else
-      flash[:error] = "今日已打卡"
-      redirect_to @target
+      flash[:error] = "打卡失败，您今日已打过卡或打卡内容为空。"
     end
+    redirect_to @day.target
   end
 
   def edit
@@ -25,7 +22,6 @@ class DaysController < ApplicationController
   end
 
   def show
-    @new_user = User.new
     @day = Day.find(params[:id])
     respond_to do |format|
       format.html { redirect_to @day }

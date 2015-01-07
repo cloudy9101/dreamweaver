@@ -1,9 +1,12 @@
 class Target < ActiveRecord::Base
   belongs_to :user
-  has_many :days
-  validates :name, :detail, :start_time, :finish_time, presence: true
+  has_many :days, dependent: :destroy
+  validates :name, :detail, :start_time, :finish_time, :category, presence: true
   validates :name, uniqueness: true
   validate :time_cannot_be_in_the_past, :finish_time_cannot_earlier_than_start_time
+
+  scope :category, ->(ctg) { where('category = ?', ctg) }
+  scope :great, -> { where('great = ?', 1) }
 
   def time_cannot_be_in_the_past
   	if start_time.present? && start_time < Date.today

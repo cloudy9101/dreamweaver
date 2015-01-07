@@ -6,7 +6,6 @@ class TargetsController < ApplicationController
   end
 
   def show
-    @new_user = User.new
     @target = Target.find(params[:id])
     @today = @target.days.new
   end
@@ -18,7 +17,7 @@ class TargetsController < ApplicationController
   def create
     @new_target = current_user.targets.build(target_params)
     if @new_target && @new_target.save
-      redirect_to root_path
+      redirect_to target_path(@new_target)
     else
       render 'new'
     end

@@ -9,10 +9,10 @@
 			</ul>
 			<div class="tab-content">
 				<div class="tab-pane fade in active" id="sign-up" role="tabpanel">
-					<%= render partial: 'users/registrations/sign_up', locals: { user: @new_user } %>
+					<%= render partial: 'users/registrations/sign_up', locals: { user: User.new } %>
 				</div>
 				<div class="tab-pane fade" id="sign-in" role="tabpanel">
-					<%= render partial: 'users/sessions/sign_in', locals: { user: @new_user } %>
+					<%= render partial: 'users/sessions/sign_in', locals: { user: User.new } %>
 				</div>
 			</div>
 		</div>

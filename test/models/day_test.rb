@@ -9,6 +9,7 @@ class DayTest < ActiveSupport::TestCase
   	@user.targets.new(name: "target", detail: "target detail", start_time: Date.today, finish_time: Date.today + 10).save
   	target = Target.find_by(name: "target")
   	@day = target.days.new
+    @day.user = @user
   end
 
   test "create day with nothing" do

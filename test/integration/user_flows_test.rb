@@ -36,7 +36,7 @@ class UserFlowsTest < ActionDispatch::IntegrationTest
 	  fill_in '开始时间', with: '2015-01-10'
 	  fill_in '结束时间', with: '2015-01-20'
 	  click_button '提交'
-	  assert_equal targets_path, current_path
+	  assert_equal target_path(Target.last), current_path
   end
 
 end
