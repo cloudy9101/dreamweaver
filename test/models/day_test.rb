@@ -6,7 +6,7 @@ class DayTest < ActiveSupport::TestCase
   # end
   def setup
   	@user = users(:one)
-  	@user.targets.new(name: "target", detail: "target detail", start_time: Date.today, finish_time: Date.today + 10).save
+  	@user.targets.new(name: "target", detail: "target detail", start_time: Date.today, finish_time: Date.today + 10, category_id: 1).save
   	target = Target.find_by(name: "target")
   	@day = target.days.new
     @day.user = @user

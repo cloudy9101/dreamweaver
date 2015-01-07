@@ -1,0 +1,13 @@
+
+one:
+  name: "学习"
+  id: 1
+two:
+  name: "工作"
+  id: 2
+three:
+  name: "生活"
+  id: 3
+four:
+  name: "健康"
+  id: 4

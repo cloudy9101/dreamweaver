@@ -16,12 +16,6 @@ class StaticPagesControllerTest < ActionController::TestCase
   	assert_response :success
   end
 
-  test "should get category" do
-  	sign_in users(:one)
-  	get :category
-  	assert_response :success
-  end
-
   test "should get great" do
   	get :great
   	assert_response :success

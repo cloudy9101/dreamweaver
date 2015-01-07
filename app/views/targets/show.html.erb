@@ -19,7 +19,7 @@
 					<% if @target.user != current_user %>
 						<div class="pull-right">
 							<%= image_tag @target.user.avatar_url, size: "40x40", class: "round-thumb" %>
-							<%= link_to @target.user.name, users_path(@target.user) %>
+							<%= link_to @target.user.name, user_path(@target.user) %>
 						</div>
 					<% end %>
 					<div class="clear"></div>

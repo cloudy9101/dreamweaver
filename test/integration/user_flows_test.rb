@@ -32,7 +32,7 @@ class UserFlowsTest < ActionDispatch::IntegrationTest
 	  visit new_target_path
 	  fill_in '目标标题', with: "Target Name"
 	  fill_in '目标描述', with: "Target Detail"
-	  select '学习', from: '目标分类'
+	  select '学习', from: 'target_category_id'
 	  fill_in '开始时间', with: '2015-01-10'
 	  fill_in '结束时间', with: '2015-01-20'
 	  click_button '提交'

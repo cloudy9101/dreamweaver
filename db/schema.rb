@@ -11,10 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150107022330) do
+ActiveRecord::Schema.define(version: 20150107065849) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "categories", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "days", force: true do |t|
     t.date     "date_at"
@@ -36,7 +42,7 @@ ActiveRecord::Schema.define(version: 20150107022330) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "great",       default: 0
-    t.integer  "category",    default: 0
+    t.integer  "category_id"
   end
 
   add_index "targets", ["user_id"], name: "index_targets_on_user_id", using: :btree

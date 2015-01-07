@@ -18,6 +18,7 @@ class TargetTest < ActiveSupport::TestCase
   	@target.detail = "target detail"
   	@target.start_time = Date.today - 10
   	@target.finish_time = Date.today + 10
+    @target.category_id = 1
   	assert_not @target.save, "Saved target with start time in the past"
   end
 
@@ -26,6 +27,7 @@ class TargetTest < ActiveSupport::TestCase
   	@target.detail = "target detail"
   	@target.start_time = Date.today
   	@target.finish_time = Date.today - 10
+    @target.category_id = 1
   	assert_not @target.save, "finish time earlier than start time"
   end
   	
@@ -36,6 +38,7 @@ class TargetTest < ActiveSupport::TestCase
   	@target.detail = "target detail"
   	@target.start_time = Date.today
   	@target.finish_time = Date.today + 10
+    @target.category_id = 1
   	assert @target.save, "Saved target correct"
   end
 end

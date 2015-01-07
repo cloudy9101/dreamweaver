@@ -6,6 +6,7 @@ one:
   start_time: 2014-11-27
   finish_time: 2014-12-27
   user_id: 298486374
+  category_id: 1
 
 two:
   name: MyString1
@@ -13,3 +14,4 @@ two:
   start_time: 2014-11-27
   finish_time: 2014-11-28
   user_id: 298486374
+  category_id: 2
