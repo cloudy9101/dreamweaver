@@ -2,12 +2,13 @@ class TargetsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @targets = current_user.targets.paginate(:page => params[:page], :per_page => 3)
+    @targets = current_user.targets.order(created_at: :desc).paginate(:page => params[:page], :per_page => 3)
   end
 
   def show
     @target = Target.find(params[:id])
     @today = @target.days.new
+    @target.update_attribute('hits', @target.hits + 1)
   end
 
   def new

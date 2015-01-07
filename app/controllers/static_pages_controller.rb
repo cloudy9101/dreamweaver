@@ -8,9 +8,7 @@ class StaticPagesController < ApplicationController
 	end
 
 	def hot
-		# Unfinished
-		@hots = Target.all.order(created_at: :desc).paginate(:page => params[:page], :per_page => 6)
-		@new_user = User.new
+		@hots = Target.all.order(hits: :desc).paginate(:page => params[:page], :per_page => 6)
 	end
 
 	def great
