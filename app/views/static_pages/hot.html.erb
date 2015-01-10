@@ -1,22 +1,18 @@
 <% provide(:title, "热门目标") %>
 
 <div class="container">
-	<div class="row">
-		<div class="col-md-8">
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<span class="text-muted">热门目标</span>
-				</div>
-				<ul class="list-group">
-					<% @hots.each do |hot| %>
-						<li class="list-group-item">	
-							<%= render partial: 'targets/progress_b', locals: { target: hot } %>
-						</li>
-					<% end %>
-				</ul>
+	<div class="ui grid">
+		<div class="twelve wide column">
+			<h3 class="ui dividing header">热门目标</h3>
+			<div class="ui three cards">
+				<% @hots.each do |hot| %>
+					<%= render partial: 'targets/card', locals: { target: hot } %>
+				<% end %>
 			</div>
-			<%= will_paginate @hots, renderer: BootstrapPagination::Rails %>
+			<%= will_paginate @hots, { class: "flickr_pagination", next_label: ">>", previous_label: "<<" } %>
 		</div>
-		<%= render 'sidebar' %>
+		<div class="four wide column">
+			<%= render 'sidebar' %>
+		</div>
 	</div>
 </div>

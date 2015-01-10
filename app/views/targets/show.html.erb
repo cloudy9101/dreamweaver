@@ -1,78 +1,41 @@
 <% provide(:title, @target.name) %>
 
 <div class="container">
-	<div class="row">
-		<div class="col-md-8">
-			<% flash.each do |name, msg| %>
-				<div class="alert alert-warning"><%= msg %></div>
-			<% end %>
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h4 class="pull-left"><%= @target.name %></h4>
-					<% if @target.user != current_user %>
-						<div class="pull-right">
-							<%= image_tag @target.user.avatar_url, size: "40x40", class: "round-thumb" %>
-							<%= link_to @target.user.name, user_path(@target.user) %>
+	<div class="ui grid">
+		<div class="twelve wide column">
+			<h3 class="ui top attached header"><i class="icon trophy"></i><%= @target.name %></h3>
+			<div class="ui attached segment">
+				<div class="ui vertical segment">
+					<div class="ui grid">
+						<div class="ten wide column">
+							<ul>
+								<li><i class="icon play"></i>开始时间：<%= @target.start_time %></li>
+								<li><i class="icon stop"></i>结束时间：<%= @target.finish_time %></li>
+								<li><i class="icon content"></i>目标描述：<%= @target.detail %></li>
+							</ul>
 						</div>
-					<% end %>
-					<div class="clear"></div>
-				</div>
-			
-				<ul class="list-group">
-					<li class="list-group-item">
-						<div class="row">
-							<div class="col-md-8" style="border-right: 1px solid #ccc">
-								<ul>
-									<li>开始日期：<%= @target.start_time %></li>
-									<li>结束日期：<%= @target.finish_time %></li>
-									<li>目标内容：<%= @target.detail %></li>
-								</ul>
-							</div>
-							<div class="col-md-4 text-center">
-								<% if @target.user == current_user %>
-									<a class="btn btn-primary btn-lg" type="button" data-toggle="modal" data-target="#punch"><span class="glyphicon glyphicon-check"></span> 打卡</a>
-									<div class="clear"></div>
-									<!-- Modal punch -->
-									<div class="modal fade" id="punch" tabindex="-1" role="dialog" aria-labelledby="punchLabel" aria-hidden="true">
-										<div class="modal-dialog">
-											<div class="modal-content">
-												<div class="modal-header">
-													<%= @target.name %>(@<%= Time.now.strftime "%Y-%m-%d" %>）
-												</div>
-												<%= form_for @today, url: target_days_path(@target, @today), html: { class: "form-horizontal", role: "form" } do |f| %>
-													<div class="modal-body">
-														<div class="form-group">
-															<%= f.label :comment, "今日记录", class: "col-sm-2 control-label" %>
-															<div class="col-sm-10">
-																<%= f.text_area :comment, class: "form-control" %>
-															</div>
-														</div>
-													</div>
-													<div class="modal-footer">
-															<button class="btn btn-default" type="button" data-dismiss="modal">关闭</button>
-															<%= f.submit "提交", class: "btn btn-primary" %>
-													</div>
-												<% end %>
-											</div>
-										</div>
-									</div>
-								<% end %>
+						<div class="six wide column">
+							<div class="ui statistics">
+								<div class="statistic">
+									<div class="value"><%= @target.days.count %></div>
+									<div class="label">打卡统计</div>
+								</div>
+								<div class="statistic">
+									<div class="value"><%= (@target.finish_time - Date.today).to_i %></div>
+									<div class="label">剩余时间</div>
+								</div>
+								<div class="statistic">
+									<div class="value"><%= ((@target.days.count.to_f / (@target.finish_time - @target.start_time)) * 100).to_i %>%</div>
+									<div class="label">完成度</div>
+								</div>
 							</div>
 						</div>
-					</li>
-					<li class="list-group-item">
-						<p class="text-muted">完成进度：</p>
-						<%= render partial: 'targets/progress_bar', object: @target %>
-					</li>	
-				</ul>
-			</div>
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<span class="text-muted">打卡记录</span>
+					</div>
 				</div>
-				<div class="panel-body">
-					<div style="overflow-x: auto">
-						<div id="calendar" 
+				<div class="ui vertical segment">
+					<div class="ui grid">
+						<div class="twelve wide column">
+							<div id="calendar" 
 							<% n = 0 %>
 							<% @target.days.each do |day| %>
 								data-date-<%= n %>="<%= day.date_at %>"
@@ -80,18 +43,67 @@
 								<% n += 1 %>
 							<% end %>
 							></div>
+						</div>
+						
+						<div class="four wide column">
+							<% if @target.user == current_user %>
+								<%= form_for @today, url: target_days_path(@target, @today), html: { class: "ui form", role: "form" } do |f| %>
+									<div class="field">
+										<%= f.label :comment, "今日记录", class: "ui ribbon label" %>
+										<%= f.text_area :comment %>
+										<%= @target.days.find_by(date_at: Date.today) ? f.submit("已打卡", class: "ui disabled button") : f.submit("打卡", class: "ui green button") %>
+									</div>
+								<% end %>
+							<% else %>
+								<%= link_to user_path(@target.user), class: "ui card" do %>
+									<div class="image"><%= image_tag @target.user.avatar.url %></div>
+									<div class="content">
+										<div class="header"><%= @target.user.name %></div>
+										<div class="meta"><span class="date">注册于<%= @target.user.created_at.strftime "%Y-%m-%d" %></span></div>
+									</div>
+								<% end %>
+							<% end %>
+						</div>
+						
 					</div>
 				</div>
 			</div>
-			<div id="today">
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<span class="text-muted">完成情况：请选择打卡日期</span>
+
+
+		<div class="ui four cards">
+			<% @target.days.last(3).each do |day| %>
+				<div class="card">
+					<div class="content">
+						<div class="header"><%= day.date_at || "暂无记录" %></div>
+						<div class="meta"></div>
+						<div class="description"><%= day.comment || "暂无记录" %></div>
 					</div>
 				</div>
+			<% end %>
+			<div class="card" id="today">
+				<div class="content">
+					<div class="header">未指定</div>
+					<div class="description">请在日历上选择要查看的日期</div>
+				</div>
 			</div>
+		</div>
+					
+						
+					
+			
+				
+		<div class="ui segment">
+			<div class="ui teal active progress" id="t_progress" data-percent=<%= ((@target.days.count.to_f / (@target.finish_time - @target.start_time)) * 100).to_i %>>
+				<div class="bar">
+					<div class="progress"></div>
+				</div>
+				<div class="label">目标进度</div>
+			</div>
+		</div>
 			
 		</div>
-		<%= render 'sidebar' %>
+		<div class="four wide column">
+			<%= render 'sidebar' %>
+		</div>
 	</div>
 </div>

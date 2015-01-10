@@ -1,19 +1,23 @@
 <% provide(:title, "我的目标") %>
 
 <div class="container">
-	<div class="row">
-		<div class="col-md-8">
-			<% flash.each do |key, value| %>
-				<div class="alert alert-<%= key %>" role="alert">
-					<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-					<li><%= value %></li>
-				</div>
-			<% end %>
-			<% @targets.each do |target| %>
-				<%= render partial: 'targets/progress', object: target %>
-			<% end %>
-			<%= will_paginate @targets, renderer: BootstrapPagination::Rails %>
+	<% flash.each do |key, value| %>
+		<div class="alert alert-<%= key %>" role="alert">
+			<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+			<li><%= value %></li>
 		</div>
-		<%= render 'sidebar' %>
+	<% end %>
+	<div class="ui grid">
+		<div class="twelve wide column">
+			<div class="ui three cards">
+				<% @targets.each do |target| %>
+					<%= render partial: 'targets/card', locals: { target: target } %>
+				<% end %>
+			</div>
+			<%= will_paginate @targets, { class: "flickr_pagination", next_label: ">>", previous_label: "<<" } %>
+		</div>
+		<div class="four wide column">
+			<%= render 'sidebar' %>
+		</div>
 	</div>
 </div>

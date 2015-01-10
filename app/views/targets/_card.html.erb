@@ -1,0 +1,18 @@
+<%= link_to target_path(target), class: "ui card" do %>
+	<div class="content">
+		<div class="header"><%= target.name %></div>
+		<div class="meta"><span class="category"><%= target.category.name %></span></div>
+		<div class="description"><%= target.detail %></div>
+	</div>
+	<div class="extra content">
+		<div class="left floated">
+			打卡<%= target.days.count %>天
+		</div>
+		<div class="right floated author">
+			<%= image_tag target.user.avatar.url, class: "ui avatar image" %><%= target.user.name %>
+		</div>
+	</div>
+	<div class="ui red bottom attached progress">
+		<div class="bar"></div>
+	</div>		
+<% end %>

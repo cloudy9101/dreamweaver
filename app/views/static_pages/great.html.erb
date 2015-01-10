@@ -1,24 +1,18 @@
 <% provide(:title, "精选") %>
 
 <div class="container">
-	<div class="row">
-		<div class="col-md-8">
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<span class="text-muted">
-						精选
-					</span>
-				</div>
-				<ul class="list-group">
-					<% @targets.each do |target| %>
-						<li class="list-group-item">
-							<%= render partial: 'targets/progress_b', locals: { target: target } %>
-						</li>
-					<% end %>
-				</ul>
+	<div class="ui grid">
+		<div class="twelve wide column">
+			<div class="ui dividing header">精选</div>
+			<div class="ui three cards">
+				<% @targets.each do |target| %>
+					<%= render partial: 'targets/card', locals: { target: target } %>
+				<% end %>
 			</div>
-			<%= will_paginate @targets, renderer: BootstrapPagination::Rails %>
+			<%= will_paginate @targets, { class: "flickr_pagination", next_label: ">>", previous_label: "<<" } %>
 		</div>
-		<%= render 'sidebar' %>
+		<div class="four wide column">
+			<%= render 'sidebar' %>
+		</div>
 	</div>
 </div>

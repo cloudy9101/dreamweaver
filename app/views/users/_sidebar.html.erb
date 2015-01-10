@@ -1,39 +1,36 @@
-<div class="col-md-4">
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<%= link_to "创建新目标", new_target_path, class: "btn btn-primary" %>
-			<%= link_to "我的目标", targets_path, class: "btn btn-default" %>
+<div class="ui card">
+	<div class="image"><%= image_tag @user.avatar.url %></div>
+	<div class="content">
+		<%= link_to @user.name, user_path(@user), class: "header" %>
+		<div class="meta">
+			<div class="date"><%= @user.created_at.strftime "%Y 年 %m 月 %d 日" %></div>
 		</div>
+		<div class="description"><%= @user.introduce %></div>
 	</div>
-	<div class="panel panel-default text-center">
-		<div class="panel-heading">
-			<span class="text-muted"><%= @user.name %></span>
-		</div>
-		<div class="panel-body">
-			<%= image_tag @user.avatar_url %>
-		</div>
+	<div class="extra content">
+		<a>
+			<i class="user icon"></i>22 Follower <!-- Todo -->
+		</a>
 	</div>
-	<div class="panel panel-default">
-		<div class="panel-heading text-center">
-			<span class="text-muted">个人资料</span>
-		</div>
-		<div class="panel-body">
-			<ul>
-				<li>生日：<%= @user.birth.strftime "%Y 年 %m 月 %d 日" unless @user.birth.nil? %></li>
-				<li>注册时间：<%= @user.created_at.strftime "%Y 年 %m 月 %d 日" %></li>
-				<li>简介：<%= @user.introduce %></li>
-			</ul>
-		</div>
-	</div>
-	<div class="panel panel-default">
-		<div class="panel-heading text-center">
-			<span class="text-muted">统计信息</span>
-		</div>
-		<div class="panel-body">
-			<ul>
-				<li>目标总数：<%= @user.targets.count %></li>
-				<li>打卡总天数：<%= @days_count %></li>
-			</ul>
-		</div>
-	</div>
+</div>
+
+<h4 class="ui top attached header">
+个人资料
+</h4>
+<div class="ui attached segment">
+	<ul>
+		<li>生日：<%= @user.birth ? @user.birth.strftime("%Y 年 %m 月 %d 日") : "未设定" %></li>
+		<li>注册时间：<%= @user.created_at.strftime "%Y 年 %m 月 %d 日" %></li>
+		<li>简介：<%= @user.introduce ? @user.introduce : "未设定" %></li>
+	</ul>
+</div>
+
+<h4 class="ui top attached header">
+统计信息
+</h4>
+<div class="ui attached segment">
+	<ul>
+		<li>目标总数：<%= @user.targets.count %></li>
+		<li>打卡总天数：<%= @days_count %></li>
+	</ul>
 </div>

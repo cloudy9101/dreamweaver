@@ -1,20 +1,14 @@
 <% if signed_in? %>
 	<%= render 'targets/sidebar' %>
 <% else %>
-	<div class="col-md-4 sign-up panel panel-default pull-right">
-		<div class="panel-body">
-			<ul class="nav nav-tabs nav-justified" role="tablist">
-				<li role="presentation" class="active"><a href="#sign-up" role="tab" data-toggle="tab">注册</a></li>
-				<li role="presentation"><a href="#sign-in" role="tab" data-toggle="tab">登陆</a></li>
-			</ul>
-			<div class="tab-content">
-				<div class="tab-pane fade in active" id="sign-up" role="tabpanel">
-					<%= render partial: 'users/registrations/sign_up', locals: { user: User.new } %>
-				</div>
-				<div class="tab-pane fade" id="sign-in" role="tabpanel">
-					<%= render partial: 'users/sessions/sign_in', locals: { user: User.new } %>
-				</div>
-			</div>
-		</div>
+	<div class="ui top two item attached tabular menu">
+		<a class="active item" data-tab="sign-up">注册</a>
+		<a class="item" data-tab="sign-in">登录</a>
+	</div>
+	<div class="ui bottom attached active tab segment" id="sign-up" data-tab="sign-up">
+		<%= render partial: 'users/registrations/sign_up', locals: { user: User.new } %>
+	</div>
+	<div class="ui bottom attached tab segment" id="sign-in" data-tab="sign-in">
+		<%= render partial: 'users/sessions/sign_in', locals: { user: User.new } %>
 	</div>
 <% end %>

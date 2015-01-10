@@ -1,16 +1,15 @@
 <div class="container">
-	<div class="row">
-		<div class="col-md-7">
-			<div class="page-header"><h3><span class="text-muted"><%= @day.target.name %></span>@<%= @day.date_at %></h3></div>
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<span class="text-muted"><%= @day.date_at %>完成情况</span>
-				</div>
-				<div class="panel-body">
-					<p><%= @day.comment %></p>
-				</div>
+	<div class="ui grid">
+		<div class="twelve wide column">
+			<div class="ui dividing header">
+				<%= @day.target.name %> @ <%= @day.date_at %>
+			</div>
+			<div class="ui segment">
+				<%= @day.comment %>
 			</div>
 		</div>
-		<%= render 'users/sidebar' %>
+		<div class="four wide column">
+			<%= render '/users/sidebar' %>
+		</div>
 	</div>
 </div>

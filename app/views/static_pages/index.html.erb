@@ -1,25 +1,23 @@
 <div class="container">
-	<div class="row">
-		<div class="col-md-8 hots hidden-xs">
-			<% flash.each do |key, value| %>
-				<div class="alert alert-<%= key %>" role="alert">
-					<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-					<li><%= value %></li>
-				</div>
-			<% end %>
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<span class="text-muted">梦想的彼方</span>
-				</div>
-				<ul class="list-group">
-					<% @targets.each do |target| %>
-						<li class="list-group-item">
-							<%= render partial: 'targets/progress_b', locals: { target: target } %>
-						</li>
-					<% end %>
-				</ul>
+	<% flash.each do |key, value| %>
+		<div class="alert alert-<%= key %>" role="alert">
+			<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+			<li><%= value %></li>
+		</div>
+	<% end %>
+	<div class="ui grid">
+		<div class="twelve wide column">
+			<h3 class="ui dividing header">
+				梦想的彼方
+			</h3>
+			<div class="ui three cards">
+				<% @targets.each do |target| %>
+						<%= render partial: 'targets/card', locals: { target: target } %>
+				<% end %>
 			</div>
 		</div>
-		<%= render 'sidebar' %>
+		<div class="four wide column">
+			<%= render 'sidebar' %>
+		</div>
 	</div>
 </div>

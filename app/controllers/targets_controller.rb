@@ -2,7 +2,7 @@ class TargetsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @targets = current_user.targets.order(created_at: :desc).paginate(:page => params[:page], :per_page => 3)
+    @targets = current_user.targets.order(created_at: :desc).paginate(:page => params[:page], :per_page => 9)
   end
 
   def show

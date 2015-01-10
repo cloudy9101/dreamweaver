@@ -1,23 +1,26 @@
-<div class="col-md-4">
-	<div class="panel panel-default">
-		<div class="panel-heading text-center">
-			<span class="text-muted">当前头像</span>
+<div class="ui card">
+	<div class="image"><%= image_tag current_user.avatar.url %></div>
+	<div class="content">
+		<a class="header"><%= current_user.name %></a>
+		<div class="meta">
+			<div class="date"><%= current_user.created_at.strftime "%Y 年 %m 月 %d 日" %></div>
 		</div>
-		<div class="panel-body text-center">
-			<%= image_tag current_user.avatar.url %>
-		</div>
+		<div class="description"><%= current_user.introduce %></div>
 	</div>
-	<div class="panel panel-default">
-		<div class="panel-heading text-center">
-			<span class="text-muted">用户资料</span>
-		</div>
-		<div class="panel-body">
-			<ul>
-				<li>生日：<%= current_user.birth.strftime "%Y 年 %m 月 %d 日" unless current_user.birth.nil? %></li>
-				<li>个人目标数：<%= current_user.targets.count %></li>
-				<li>注册时间：<%= current_user.created_at.strftime "%Y 年 %m 月 %d 日" %></li>
-				<li>简介：<%= current_user.introduce %></li>
-			</ul>
-		</div>
+	<div class="extra content">
+		<a>
+			<i class="user icon"></i>22 Follower <!-- Todo -->
+		</a>
 	</div>
+</div>
+
+<h4 class="ui top attached header">
+用户资料
+</h4>
+<div class="ui attached segment">
+	<ul>
+		<li>生日：<%= current_user.birth ? current_user.birth.strftime("%Y 年 %m 月 %d 日") : "未设定" %></li>
+		<li>个人目标数：<%= current_user.targets.count %></li>
+		<li>简介：<%= current_user.introduce ? current_user.introduce : "未设定" %></li>
+	</ul>
 </div>

@@ -1,52 +1,35 @@
 <% provide(:title, "新建目标") %>
 
 <div class="container">
-	<div class="row">
-		<div class="col-md-8">
-			<div class="page-header">
-				<h4>创建新目标</h4>
-			</div>
-			<% if @new_target.errors.any? %>
-				<div class="alert alert-warning" role="alert">
-					<% @new_target.errors.full_messages.each do |msg| %>
-						<li><%= msg %></li>
-					<% end %>
+	<div class="ui grid">
+		<div class="twelve wide column">
+			<div class="ui dividing header">创建新目标</div>
+			<%= form_for @new_target, html: { class: "ui large form segment", role: "form" } do |f| %>
+				<div class="inline field">
+					<%= f.label :name, "目标标题：" %>
+					<%= f.text_field :name, class: "twelve wide field", placeholder: "例如：锻炼身体" %>
 				</div>
-			<% end %>
-			<%= form_for @new_target, html: { class: "form-horizontal", role: "form" } do |f| %>
-				<div class="form-group">
-					<%= f.label :name, "目标标题：", class: "col-sm-3 control-label" %>
-					<div class="col-sm-9">
-						<%= f.text_field :name, class: "form-control", placeholder: "例如：锻炼身体" %>
-					</div>
+				<div class="inline field">
+					<%= f.label :detail, "目标描述：" %>
+					<%= f.text_area :detail, class: "twelve wide field", placeholder: "例如：深蹲15个 平板支撑45秒 每天10组" %>
 				</div>
-				<div class="form-group">
-					<%= f.label :detail, "目标描述：", class: "col-sm-3 control-label" %>
-					<div class="col-sm-9">
-						<%= f.text_area :detail, class: "form-control", size: "5x6", placeholder: "例如： 深蹲15个 平板支撑45秒 每天10组" %>
-					</div>
+				<div class="inline field">
+					<%= f.label :category_id, "目标分类：" %>
+					<%= f.select :category_id, [["学习", 1], ["工作", 2], ["生活", 3], ["健康", 4]], {}, class: "ui dropdown six wide field" %>
 				</div>
-				<div class="form-group">
-					<%= f.label :category, "目标分类：", class: "col-sm-3 control-label" %>
-					<div class="col-sm-5">
-						<%= f.select :category_id, [["学习", 1], ["工作", 2], ["生活", 3], ["健康", 4]], {}, class: "form-control" %>
-					</div>
+				<div class="inline field">
+					<%= f.label :start_time, "开始时间：" %>
+					<%= f.date_field :start_time, class: "six wide field" %>
 				</div>
-				<div class="form-group">
-					<%= f.label :start_time, "开始时间：", class: "col-sm-3 control-label" %>
-					<div class="col-sm-5">
-						<%= f.date_field :start_time, class: "form-control" %>
-					</div>
+				<div class="inline field">
+					<%= f.label :finish_time, "结束时间：" %>
+					<%= f.date_field :finish_time, class: "six wide field" %>
 				</div>
-				<div class="form-group">
-					<%= f.label :finish_time, "结束时间：", class: "col-sm-3 control-label" %>
-					<div class="col-sm-5">
-						<%= f.date_field :finish_time, class: "form-control" %>
-					</div>
+				<div class="inline field">
+					<%= f.submit "提交", class: "ui blue button" %>
 				</div>
-				<%= f.submit "提交", class: "btn btn-primary col-md-offset-3" %>
 			<% end %>
 		</div>
-		<%= render 'sidebar' %>
+		<div class="four wide column"><%= render 'targets/sidebar' %></div>
 	</div>
 </div>

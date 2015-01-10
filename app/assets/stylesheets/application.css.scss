@@ -12,21 +12,17 @@
  *
  *= require_tree .
  *= require_self
+ *
  */
-@import "bootstrap-sprockets";
-@import "bootstrap";
+// @import "bootstrap-sprockets";
+// @import "bootstrap";
+
+.container {
+	width: 1170px;
+	margin: auto;
+}
 
 .round-thumb {
 	border-radius: 50px;
 	border: 1px solid #e5e5e5;
-}
-
-a:link,:active,:hover,:focus {
-	text-decoration: none;
-}
-a {
-	color: #777;
-}
-a:hover {
-	color: #555;
 }

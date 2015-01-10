@@ -3,9 +3,11 @@
 one:
   date_at: 2014-11-28
   comment: MyText1
-  target_id: 1
+  target_id: 298486374
+  user_id: 298486374
 
 two:
   date_at: 2014-11-29
   comment: MyText2
-  target_id: 1
+  target_id: 298486374
+  user_id: 298486374

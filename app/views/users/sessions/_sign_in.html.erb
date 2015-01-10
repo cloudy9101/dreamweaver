@@ -5,25 +5,19 @@
 		<% end %>
 	</div>
 <% end %>
-<%= form_for(user, url: user_session_path(user), html: { class: "form-horizontal" }) do |f| %>
-	<div class="form-group text-center">
-		<%= image_tag "default.jpg", class: "round-thumb" %>
+<%= form_for(user, url: user_session_path(user), html: { class: "ui form" }) do |f| %>
+	<div class="ui segment">
+		<h2 class="ui black center aligned header">Welcome</h2>
 	</div>
-	<div class="form-group">
-		<%= f.label :email, "邮箱", class: "col-sm-3 control-label" %>
-		<div class="col-sm-9">
-			<%= f.email_field :email, class: "form-control", placeholder: "Email" %>
-		</div>
+	<div class="inline field">
+		<%= f.label :email, "邮箱", class: "three wide field" %>
+		<%= f.email_field :email, placeholder: "Email" %>
 	</div>
-	<div class="form-group">
-		<%= f.label :password, "密码", class: "col-sm-3 control-label" %>
-		<div class="col-sm-9">
-			<%= f.password_field :password, class: "form-control", placeholder: "Password" %>
-		</div>
+	<div class="inline field">
+		<%= f.label :password, "密码", class: "three wide field" %>
+		<%= f.password_field :password, placeholder: "Password" %>
 	</div>
-	<div class="form-group">
-		<div class="col-sm-3 col-sm-offset-3">
-			<%= f.submit "登陆", class: "btn btn-primary", id: "login" %>
-		</div>
+	<div class="inline field">
+		<%= f.submit "登陆", class: "ui blue button", id: "login" %>
 	</div>
 <% end %>
