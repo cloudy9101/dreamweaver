@@ -162,12 +162,12 @@
                 }
 
                 var day = $('<div class="day" style="background-color: ' + backgroundColor + ';" />');
-                var day_url = $('<a />')
+                var day_url = $('<a class="popup" />');
 
                 day.attr('data-date', currentDay.toISOString());
                 day.attr('data-value', value || 0);
-                day.attr('title', currentDay.toLocaleDateString());
                 day.attr('data-url', url || '#');
+                day_url.attr('data-content', currentDay.toLocaleDateString());
                 day_url.attr('href', url || '#');
                 day_url.attr('data-remote', true);
                 day_url.append(day);

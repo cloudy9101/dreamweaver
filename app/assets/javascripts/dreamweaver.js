@@ -4,4 +4,7 @@ $(document).on("page:change", function(){
 	});
 	$('.menu .item').tab();
 	$('#t_progress').progress();
+	$('.message .close').on('click', function(){
+		$(this).closest('.message').fadeOut();
+	});
 });

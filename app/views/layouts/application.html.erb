@@ -10,6 +10,13 @@
 
 	<%= render 'layouts/header' %>
 
+	<% flash.each do |key, value| %>
+		<div class="ui <%= key %> message">
+			<i class="close icon"></i>
+			<span><%= value %></span>
+		</div>
+	<% end %>
+
 	<%= yield %>
 	
 	<%= render 'layouts/footer' %>

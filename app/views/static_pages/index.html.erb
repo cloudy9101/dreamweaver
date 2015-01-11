@@ -1,16 +1,10 @@
 <div class="container">
-	<% flash.each do |key, value| %>
-		<div class="alert alert-<%= key %>" role="alert">
-			<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-			<li><%= value %></li>
-		</div>
-	<% end %>
 	<div class="ui grid">
 		<div class="twelve wide column">
 			<h3 class="ui dividing header">
 				梦想的彼方
 			</h3>
-			<div class="ui three cards">
+			<div class="ui two cards">
 				<% @targets.each do |target| %>
 						<%= render partial: 'targets/card', locals: { target: target } %>
 				<% end %>

@@ -4,7 +4,7 @@
 	<div class="ui grid">
 		<div class="twelve wide column">
 			<div class="ui dividing header"><%= @ctg.name %></div>
-			<div class="ui three cards">
+			<div class="ui two cards">
 				<% @targets.each do |target| %>
 					<%= render partial: 'targets/card', locals: { target: target } %>
 				<% end %>

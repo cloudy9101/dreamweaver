@@ -6,6 +6,8 @@ class Target < ActiveRecord::Base
   validates :name, uniqueness: true
   validate :time_cannot_be_in_the_past, :finish_time_cannot_earlier_than_start_time
 
+  self.per_page = 8
+
   scope :great, -> { where('great = ?', 1) }
 
   def time_cannot_be_in_the_past

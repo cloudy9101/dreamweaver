@@ -14,17 +14,19 @@ function() {
 		n++;
 	};
 
-    $('#calendar').gammacalendar(dates, {
-	        weeks: 34,
-	        i18n: 'zh',
-	        startOnSunday: true,
-	        highlightToday: false,
-	        baseColor: {
-	            r: 0,
-	            g: 200,
-	            b: 200
-	        }
-	    }
+  $('#calendar').gammacalendar(dates, {
+        weeks: 34,
+        i18n: 'zh',
+        startOnSunday: true,
+        highlightToday: false,
+        baseColor: {
+            r: 0,
+            g: 200,
+            b: 200
+        }
+    }
 	);
+
+  $('.popup').popup();
 }
 );

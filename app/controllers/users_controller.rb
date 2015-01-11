@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 	before_action :authenticate_user!
   def show
   	@user = User.find(params[:id])
-    @targets = @user.targets.paginate(:page => params[:page], :per_page => 6)
+    @targets = @user.targets.paginate(:page => params[:page])
     @days_count = @user.days.count
   end
 
