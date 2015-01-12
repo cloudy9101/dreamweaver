@@ -1,15 +1,13 @@
-<div class="container">
-	<div class="ui grid">
-		<div class="twelve wide column">
-			<div class="ui dividing header">
-				<%= @day.target.name %> @ <%= @day.date_at %>
-			</div>
-			<div class="ui segment">
-				<%= @day.comment %>
-			</div>
+<div class="ui grid">
+	<div class="twelve wide column">
+		<div class="ui dividing header">
+			<%= @day.target.name %> @ <%= @day.date_at %>
 		</div>
-		<div class="four wide column">
-			<%= render '/users/sidebar' %>
+		<div class="ui segment">
+			<%= @day.comment %>
 		</div>
+	</div>
+	<div class="four wide column">
+		<%= render '/users/sidebar' %>
 	</div>
 </div>

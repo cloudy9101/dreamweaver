@@ -1,18 +1,16 @@
 <% provide(:title, @user.name) %>
 
-<div class="container">
-	<div class="ui grid">
-		<div class="twelve wide column">
-			<div class="ui dividing header"><%= @user.name %>的目标</div>
-			<div class="ui two cards">
-				<% @targets.each do |target| %>
-					<%= render partial: 'targets/card', locals: { target: target } %>
-				<% end %>
-			</div>
-			<%= will_paginate @targets, { class: "flickr_pagination", next_label: ">>", previous_label: "<<" } %>
+<div class="ui grid">
+	<div class="twelve wide column">
+		<div class="ui dividing header"><%= @user.name %>的目标</div>
+		<div class="ui two cards">
+			<% @targets.each do |target| %>
+				<%= render partial: 'targets/card', locals: { target: target } %>
+			<% end %>
 		</div>
-		<div class="four wide column">
-			<%= render partial: 'sidebar', locals: { user: @user } %>
-		</div>
+		<%= will_paginate @targets, { class: "flickr_pagination", next_label: ">>", previous_label: "<<" } %>
+	</div>
+	<div class="four wide column">
+		<%= render partial: 'sidebar', locals: { user: @user } %>
 	</div>
 </div>

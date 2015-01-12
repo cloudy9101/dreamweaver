@@ -1,10 +1,8 @@
 <% provide(:title, "注册新用户") %>
 
-<div class="container">
-	<div class="ui centered grid">
-		<div class="six wide column ui segment">
-			<div class="ui dividing header">注册新用户</div>
-			<%= render partial: 'users/registrations/sign_up', locals: { user: resource } %>
-		</div>
+<div class="ui centered grid">
+	<div class="six wide column ui segment">
+		<div class="ui dividing header">注册新用户</div>
+		<%= render partial: 'users/registrations/sign_up', locals: { user: resource } %>
 	</div>
 </div>

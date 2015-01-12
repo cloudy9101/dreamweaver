@@ -1,50 +1,48 @@
 <% provide(:title, "编辑资料") %>
 
-<div class="container">
-  <div class="ui grid">
-    <div class="twelve wide column">
-      <div class="ui dividing header">编辑资料</div>
-      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "ui segment form", role: "form" }) do |f| %>
-        <div class="inline field">
-          <%= f.label :email, "邮箱：", class: "two wide field" %>
-          <%= f.label :email, resource.email, class: "twelve wide field" %>
-        </div>
-        <div class="inline field">
-          <%= f.label :name, "用户名：", class: "two wide field" %>
-          <%= f.text_field :name, class: "twelve wide field" %>
-        </div>
-        <div class="inline field">
-          <%= f.label :avatar, "头像：", class: "two wide field" %>
-          <%= f.file_field :avatar %>
-        </div>
-        <div class="inline field">
-          <%= f.label :password, "密码：", class: "two wide field" %>
-          <%= f.password_field :password, class: "twelve wide field" %>
-        </div>
-        <div class="inline field">
-          <%= f.label :password_confirmation, "确认密码：", class: "two wide field" %>
-          <%= f.password_field :password_confirmation, class: "twelve wide field" %>
-        </div>
-        <div class="inline field">
-          <%= f.label :birth, "生日：", class: "two wide field" %>
-          <%= f.date_field :birth %>
-        </div>
-        <div class="inline field">
-          <%= f.label :introduce, "简介：", class: "two wide field" %>
-          <%= f.text_area :introduce, class: "twelve wide field" %>
-        </div>
-        <div class="inline field">
-          <%= f.label :current_password, "原密码：（必填）", class: "two wide field" %>
-          <%= f.password_field :current_password %>
-          <%= f.submit "提交", class: "ui blue button" %>
-        </div>
-      <% end %>
-    </div>
-    <div class="four wide column">
-      <%= render partial: 'users/sidebar', locals: { user: resource } %>
-      <div class="ui segment">
-        <%= link_to "删除账号", registration_path(resource_name), data: { confirm: "确定您的操作？" }, method: :delete, class: "ui red small button" %> （该操作不可逆转！）
+<div class="ui grid">
+  <div class="twelve wide column">
+    <div class="ui dividing header">编辑资料</div>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "ui segment form", role: "form" }) do |f| %>
+      <div class="inline field">
+        <%= f.label :email, "邮箱：", class: "two wide field" %>
+        <%= f.label :email, resource.email, class: "twelve wide field" %>
       </div>
+      <div class="inline field">
+        <%= f.label :name, "用户名：", class: "two wide field" %>
+        <%= f.text_field :name, class: "twelve wide field" %>
+      </div>
+      <div class="inline field">
+        <%= f.label :avatar, "头像：", class: "two wide field" %>
+        <%= f.file_field :avatar %>
+      </div>
+      <div class="inline field">
+        <%= f.label :password, "密码：", class: "two wide field" %>
+        <%= f.password_field :password, class: "twelve wide field" %>
+      </div>
+      <div class="inline field">
+        <%= f.label :password_confirmation, "确认密码：", class: "two wide field" %>
+        <%= f.password_field :password_confirmation, class: "twelve wide field" %>
+      </div>
+      <div class="inline field">
+        <%= f.label :birth, "生日：", class: "two wide field" %>
+        <%= f.date_field :birth %>
+      </div>
+      <div class="inline field">
+        <%= f.label :introduce, "简介：", class: "two wide field" %>
+        <%= f.text_area :introduce, class: "twelve wide field" %>
+      </div>
+      <div class="inline field">
+        <%= f.label :current_password, "原密码：（必填）", class: "two wide field" %>
+        <%= f.password_field :current_password %>
+        <%= f.submit "提交", class: "ui blue button" %>
+      </div>
+    <% end %>
+  </div>
+  <div class="four wide column">
+    <%= render partial: 'users/sidebar', locals: { user: resource } %>
+    <div class="ui segment">
+      <%= link_to "删除账号", registration_path(resource_name), data: { confirm: "确定您的操作？" }, method: :delete, class: "ui red small button" %> （该操作不可逆转！）
     </div>
   </div>
 </div>

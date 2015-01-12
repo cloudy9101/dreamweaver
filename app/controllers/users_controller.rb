@@ -9,11 +9,4 @@ class UsersController < ApplicationController
   	
   end
 
-  private
-  	def require_login
-  		unless signed_in?
-  			flash[:info] = "请您登录。"
-  			redirect_to root_url
-  		end
-  	end
 end
