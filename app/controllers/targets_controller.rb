@@ -8,7 +8,7 @@ class TargetsController < ApplicationController
   def show
     @target = Target.find(params[:id])
     @today = @target.days.new
-    @target.update_attribute('hits', @target.hits + 1)
+    Target.increment_counter(:hits, params[:id]) unless @target.user == current_user
   end
 
   def new
