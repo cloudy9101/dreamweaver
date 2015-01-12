@@ -3,7 +3,6 @@ class UsersController < ApplicationController
   def show
   	@user = User.find(params[:id])
     @targets = @user.targets.paginate(:page => params[:page])
-    @days_count = @user.days.count
   end
 
   def edit

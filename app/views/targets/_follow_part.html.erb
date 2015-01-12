@@ -1,0 +1,29 @@
+<div id="follow_part">
+	<div class="ui purple statistics">
+		<div class="statistic">
+			<div class="value"><%= target.followed_users.count %></div>
+			<div class="label">关注</div>
+		</div>
+		<div class="statistic">
+			<div class="value"><%= "22" %></div><!-- Todo -->
+			<div class="label">赞</div>
+		</div>
+	</div>
+	<div class="ui buttons">
+		<% if target.followed?(current_user) %>
+			<%= form_for(target, url: { action: "unfollowed" }, remote: true, html: { style: "display: inline;"}) do |f| %>
+				<div><%= f.hidden_field :id %></div>
+				<%= f.submit "取消关注", class: "ui blue button" %>
+			<% end %>
+		<% else %>
+			<%= form_for(target, url: { action: "followed" }, remote: true, html: { style: "display: inline;"}) do |f| %>
+				<div><%= f.hidden_field :id %></div>
+				<%= f.submit "关注", class: "ui blue button" %>
+			<% end %>
+		<% end %>
+
+		<%= link_to '#', class: "ui pink button" do %>
+			<i class="thumbs outline up icon"></i>赞
+		<% end %>
+	</div>
+</div>

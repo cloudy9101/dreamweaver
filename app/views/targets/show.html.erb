@@ -7,28 +7,25 @@
 			<div class="ui attached segment">
 				<div class="ui vertical segment">
 					<div class="ui grid">
-						<div class="ten wide column">
-							<ul>
-								<li><i class="icon play"></i>开始时间：<%= @target.start_time %></li>
-								<li><i class="icon stop"></i>结束时间：<%= @target.finish_time %></li>
-								<li><i class="icon content"></i>目标描述：<%= @target.detail %></li>
-							</ul>
-						</div>
-						<div class="six wide column">
-							<div class="ui statistics">
-								<div class="statistic">
-									<div class="value"><%= @target.days.count %></div>
-									<div class="label">打卡统计</div>
-								</div>
-								<div class="statistic">
-									<div class="value"><%= (@target.finish_time - Date.today).to_i %></div>
-									<div class="label">剩余时间</div>
-								</div>
-								<div class="statistic">
-									<div class="value"><%= ((@target.days.count.to_f / (@target.finish_time - @target.start_time)) * 100).to_i %>%</div>
-									<div class="label">完成度</div>
-								</div>
+						<div class="twelve wide column">
+							<div class="ui horizontal list">
+								<div class="ui teal large label"><i class="icon play"></i>开始时间：<%= @target.start_time %></div>
+								<div class="ui red large label"><i class="icon stop"></i>结束时间：<%= @target.finish_time %></div>
 							</div>
+							<div class="ui green message"><i class="icon content"></i>目标描述：<%= @target.detail %></div>
+						</div>
+						<div class="four wide column">
+							<% if @target.user == current_user %>
+								<%= form_for @today, url: target_days_path(@target, @today), html: { class: "ui small form", role: "form" } do |f| %>
+									<div class="field">
+										<%= f.text_area :comment, size: "2x2" %>
+										<%= @target.days.find_by(date_at: Date.today) ? f.submit("已打卡", class: "ui disabled button") : f.submit("打卡", class: "ui blue button") %>
+										<div class="ui teal tag label">今日记录</div>
+									</div>
+								<% end %>
+							<% else %>
+								<%= render partial: 'follow_part', locals: { target: @target } %>
+							<% end %>
 						</div>
 					</div>
 				</div>
@@ -46,64 +43,72 @@
 						</div>
 						
 						<div class="four wide column">
-							<% if @target.user == current_user %>
-								<%= form_for @today, url: target_days_path(@target, @today), html: { class: "ui form", role: "form" } do |f| %>
-									<div class="field">
-										<%= f.label :comment, "今日记录", class: "ui ribbon label" %>
-										<%= f.text_area :comment %>
-										<%= @target.days.find_by(date_at: Date.today) ? f.submit("已打卡", class: "ui disabled button") : f.submit("打卡", class: "ui green button") %>
-									</div>
-								<% end %>
-							<% else %>
-								<%= link_to user_path(@target.user), class: "ui card" do %>
-									<div class="image"><%= image_tag @target.user.avatar.url %></div>
-									<div class="content">
-										<div class="header"><%= @target.user.name %></div>
-										<div class="meta"><span class="date">注册于<%= @target.user.created_at.strftime "%Y-%m-%d" %></span></div>
-									</div>
-								<% end %>
-							<% end %>
+							<div class="ui small statistics">
+								<div class="statistic">
+									<div class="value"><%= @target.days.count %></div>
+									<div class="label">打卡统计</div>
+								</div>
+								<div class="statistic">
+									<div class="value"><%= (@target.finish_time - Date.today).to_i %></div>
+									<div class="label">剩余时间</div>
+								</div>
+								<div class="statistic">
+									<div class="value"><%= ((@target.days.count.to_f / (@target.finish_time - @target.start_time)) * 100).to_i %>%</div>
+									<div class="label">完成度</div>
+								</div>
+								<div class="statistic">
+									<div class="value"><%= @target.hits %></div>
+									<div class="label">点击</div>
+								</div>
+							</div>
+							
 						</div>
 						
 					</div>
 				</div>
 			</div>
 
-
-		<div class="ui four cards">
-			<% @target.days.last(3).each do |day| %>
-				<div class="card">
+			<div class="ui four cards">
+				<% @target.days.last(3).each do |day| %>
+					<div class="card">
+						<div class="content">
+							<div class="header"><%= day.date_at || "暂无记录" %></div>
+							<div class="meta"></div>
+							<div class="description"><%= day.comment || "显示最近打卡日记录" %></div>
+						</div>
+					</div>
+				<% end %>
+				<div class="card" id="today">
 					<div class="content">
-						<div class="header"><%= day.date_at || "暂无记录" %></div>
-						<div class="meta"></div>
-						<div class="description"><%= day.comment || "暂无记录" %></div>
+						<div class="header">未指定</div>
+						<div class="description">请在日历上选择要查看的日期</div>
 					</div>
 				</div>
-			<% end %>
-			<div class="card" id="today">
-				<div class="content">
-					<div class="header">未指定</div>
-					<div class="description">请在日历上选择要查看的日期</div>
-				</div>
 			</div>
-		</div>
-					
-						
-					
-			
-				
-		<div class="ui segment">
-			<div class="ui teal active progress" id="t_progress" data-percent=<%= ((@target.days.count.to_f / (@target.finish_time - @target.start_time)) * 100).to_i %>>
-				<div class="bar">
-					<div class="progress"></div>
-				</div>
-				<div class="label">目标进度</div>
+
+			<div class="ui small header">
+				关注者
 			</div>
+
+			<div class="ui eight doubling cards">
+				<% @target.followed_users.limit(8).each do |followed_user| %>
+					<%= link_to user_path(followed_user), class: "card" do %>
+						<div class="image"><%= image_tag followed_user.avatar.url %></div>
+						<div class="content">
+							<div class="header"><%= followed_user.name %></div>
+						</div>
+					<% end %>
+				<% end unless @target.followed_users.empty? %>
+			</div>
+
 		</div>
-			
-		</div>
+
 		<div class="four wide column">
-			<%= render 'sidebar' %>
+			<% if @target.user == current_user %>
+				<%= render 'sidebar' %>
+			<% else %>
+				<%= render partial: 'users/sidebar', locals: { user: @target.user } %>
+			<% end %>
 		</div>
 	</div>
 </div>

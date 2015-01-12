@@ -38,6 +38,26 @@ class TargetsController < ApplicationController
     redirect_to root_path
   end
 
+  def followed
+    @target = Target.find(params[:id])
+    if @target.user != current_user && !@target.followed_users.include?(current_user)
+      @target.followed_users << current_user
+    end
+    respond_to do |format|
+      format.html { redirect_to @target }
+      format.js {}
+    end
+  end
+
+  def unfollowed
+    @target = Target.find(params[:id])
+    @target.followed_users.destroy(current_user) if @target.followed?(current_user)
+    respond_to do |format|
+      format.html { redirect_to @target }
+      format.js {}
+    end
+  end
+
   private
     def target_params
       params.require(:target).permit(:name, :detail, :start_time, :finish_time, :category_id)

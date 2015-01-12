@@ -12,7 +12,7 @@
 			<%= will_paginate @targets, { class: "flickr_pagination", next_label: ">>", previous_label: "<<" } %>
 		</div>
 		<div class="four wide column">
-			<%= render 'sidebar' %>
+			<%= render partial: 'sidebar', locals: { user: @user } %>
 		</div>
 	</div>
 </div>

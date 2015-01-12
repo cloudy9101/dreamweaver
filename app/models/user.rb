@@ -15,6 +15,8 @@ class User < ActiveRecord::Base
 	has_many :followings, through: :relationships
 	has_many :followers, through: :reverse_relationships
 
+	has_and_belongs_to_many :following_targets, class_name: "Target", foreign_key: 'user_id', association_foreign_key: "target_id", join_table: 'users_targets'
+
 	validates :name, presence: true
 	validates :name, uniqueness: true
 

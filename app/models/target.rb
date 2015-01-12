@@ -2,6 +2,9 @@ class Target < ActiveRecord::Base
   belongs_to :user
   belongs_to :category
   has_many :days, dependent: :destroy
+
+  has_and_belongs_to_many :followed_users, class_name: "User", foreign_key: 'target_id', association_foreign_key: "user_id", join_table: 'users_targets'
+
   validates :name, :detail, :start_time, :finish_time, :category_id, presence: true
   validates :name, uniqueness: true
   validate :time_cannot_be_in_the_past, :finish_time_cannot_earlier_than_start_time
@@ -9,6 +12,10 @@ class Target < ActiveRecord::Base
   self.per_page = 8
 
   scope :great, -> { where('great = ?', 1) }
+
+  def followed?(user)
+    followed_users.include?(user)
+  end
 
   def time_cannot_be_in_the_past
   	if start_time.present? && start_time < Date.today

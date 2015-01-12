@@ -11,6 +11,10 @@ Rails.application.routes.draw do
 
   resources :targets do
      resources :days
+     member do
+      patch 'followed'
+      patch 'unfollowed'
+    end
   end
 
   resources :relationships, only: [:create, :destroy]
