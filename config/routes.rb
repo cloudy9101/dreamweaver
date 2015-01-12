@@ -14,6 +14,8 @@ Rails.application.routes.draw do
      member do
       patch 'followed'
       patch 'unfollowed'
+      patch 'like'
+      patch 'unlike'
     end
   end
 

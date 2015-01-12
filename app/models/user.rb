@@ -17,6 +17,8 @@ class User < ActiveRecord::Base
 
 	has_and_belongs_to_many :following_targets, class_name: "Target", foreign_key: 'user_id', association_foreign_key: "target_id", join_table: 'users_targets'
 
+	has_and_belongs_to_many :likeable_targets, class_name: "Target", foreign_key: 'user_id', association_foreign_key: "target_id", join_table: 'likeable_targets_like_users'
+
 	validates :name, presence: true
 	validates :name, uniqueness: true
 

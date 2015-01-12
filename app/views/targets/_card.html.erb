@@ -1,13 +1,27 @@
 <%= link_to target_path(target), class: "ui card" do %>
 	<div class="content">
-		<div class="header"><%= target.name %></div>
-		<div class="meta"><span class="category"><%= target.category.name %></span></div>
+		<div class="header">
+			<%= target.name %>
+			<% if target.record_today? %>
+				<i class="green check square icon"></i>
+			<% else %>
+				<i class="disabled check square icon"></i>
+			<% end %>
+		</div>
+		<div class="meta"><span class="category"><%= target.category.name %></span>
+		</div>
 		<div class="description"><%= target.detail %></div>
 	</div>
 	<div class="ui top right attached label"><i class="icon pointing up"></i><%= target.hits %></div>
 	<div class="extra content">
 		<div class="ui left floated black label">
 			打卡<%= target.days.count %>天
+		</div>
+		<div class="ui left floated purple label">
+			<%= target.followed_users.count %>人关注
+		</div>
+		<div class="ui left floated pink label">
+			<i class="heart icon"></i><%= target.like_users.count %>
 		</div>
 		<div class="right floated author">
 			<%= image_tag target.user.avatar.url, class: "ui avatar image" %><%= target.user.name %>

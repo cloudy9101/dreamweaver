@@ -1,11 +1,11 @@
 <div id="follow_part">
-	<div class="ui purple statistics">
-		<div class="statistic">
+	<div class="ui horizontal statistics">
+		<div class="purple statistic">
 			<div class="value"><%= target.followed_users.count %></div>
 			<div class="label">关注</div>
 		</div>
-		<div class="statistic">
-			<div class="value"><%= "22" %></div><!-- Todo -->
+		<div class="pink statistic">
+			<div class="value"><%= target.like_users.count %></div>
 			<div class="label">赞</div>
 		</div>
 	</div>
@@ -22,8 +22,14 @@
 			<% end %>
 		<% end %>
 
-		<%= link_to '#', class: "ui pink button" do %>
-			<i class="thumbs outline up icon"></i>赞
+		<% if target.liked?(current_user) %>
+			<%= form_for(target, url: { action: "unlike" }, remote: true, html: { style: "display: inline;" }) do |f| %>
+				<%= f.submit "已赞", class: "ui button" %>
+			<% end %>
+		<% else %>
+			<%= form_for(target, url: { action: "like" }, remote: true, html: { style: "display: inline;"}) do |f| %>
+				<%= f.submit "赞", class: "ui pink button" %>
+			<% end %>
 		<% end %>
 	</div>
 </div>

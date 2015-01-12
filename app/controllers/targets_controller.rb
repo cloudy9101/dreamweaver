@@ -58,6 +58,26 @@ class TargetsController < ApplicationController
     end
   end
 
+  def like
+    @target = Target.find(params[:id])
+    if @target.user != current_user && !@target.liked?(current_user)
+      @target.like_users << current_user
+    end
+    respond_to do |format|
+      format.html { redirect_to @target }
+      format.js {}
+    end
+  end
+
+  def unlike
+    @target = Target.find(params[:id])
+    @target.like_users.destroy(current_user) if @target.liked?(current_user)
+    respond_to do |format|
+      format.html { redirect_to @target }
+      format.js {}
+    end
+  end
+
   private
     def target_params
       params.require(:target).permit(:name, :detail, :start_time, :finish_time, :category_id)

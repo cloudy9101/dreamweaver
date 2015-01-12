@@ -5,6 +5,8 @@ class Target < ActiveRecord::Base
 
   has_and_belongs_to_many :followed_users, class_name: "User", foreign_key: 'target_id', association_foreign_key: "user_id", join_table: 'users_targets'
 
+  has_and_belongs_to_many :like_users, class_name: "User", foreign_key: 'target_id', association_foreign_key: "user_id", join_table: 'likeable_targets_like_users'
+
   validates :name, :detail, :start_time, :finish_time, :category_id, presence: true
   validates :name, uniqueness: true
   validate :time_cannot_be_in_the_past, :finish_time_cannot_earlier_than_start_time
@@ -15,6 +17,14 @@ class Target < ActiveRecord::Base
 
   def followed?(user)
     followed_users.include?(user)
+  end
+
+  def liked?(user)
+    like_users.include?(user)
+  end
+
+  def record_today?
+    days.find_by_date_at(Date.today) ? true : false
   end
 
   def time_cannot_be_in_the_past
