@@ -9,18 +9,23 @@
 	</div>
 	<% end %>
 </div>
-<h4 class="ui top attached header">
-人生的六个高度理论
-</h4>
-<div class="ui attached segment">
-	<ol>
-		<li>原则（个人的价值观 原则 目标）</li>
-		<li>愿景（3-5年的工作目标）</li>
-		<li>目标（1-2年的阶段性成果）</li>
-		<li>责任范围（工作上的角色，生活中的角色）</li>
-		<li>任务（需要一步以上完成的事情）</li>
-		<li>下一步行动（切实具体的动作）</li>
-	</ol>
+
+<%= render partial: 'relationships/follow', locals: { user: current_user } %>
+
+<div class="ui accordion">
+	<h4 class="ui top attached header inverted title">
+		人生的六个高度理论
+	</h4>
+	<div class="ui attached content segment">
+		<ol>
+			<li>原则（个人的价值观 原则 目标）</li>
+			<li>愿景（3-5年的工作目标）</li>
+			<li>目标（1-2年的阶段性成果）</li>
+			<li>责任范围（工作上的角色，生活中的角色）</li>
+			<li>任务（需要一步以上完成的事情）</li>
+			<li>下一步行动（切实具体的动作）</li>
+		</ol>
+	</div>
 </div>
 
 <h4 class="ui top attached header">使用指南</h4>

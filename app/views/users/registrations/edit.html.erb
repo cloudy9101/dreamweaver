@@ -41,7 +41,7 @@
       <% end %>
     </div>
     <div class="four wide column">
-      <%= render 'sidebar' %>
+      <%= render partial: 'users/sidebar', locals: { user: resource } %>
       <div class="ui segment">
         <%= link_to "删除账号", registration_path(resource_name), data: { confirm: "确定您的操作？" }, method: :delete, class: "ui red small button" %> （该操作不可逆转！）
       </div>

@@ -7,4 +7,5 @@ $(document).on("page:change", function(){
 	$('.message .close').on('click', function(){
 		$(this).closest('.message').fadeOut();
 	});
+	$('.ui.accordion').accordion();
 });

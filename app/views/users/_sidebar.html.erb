@@ -7,12 +7,9 @@
 		</div>
 		<div class="description"><%= @user.introduce %></div>
 	</div>
-	<div class="extra content">
-		<a>
-			<i class="user icon"></i>22 Follower <!-- Todo -->
-		</a>
-	</div>
 </div>
+
+<%= render partial: "relationships/follow", locals: { user: @user } %>
 
 <h4 class="ui top attached header">
 个人资料
