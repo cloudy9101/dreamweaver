@@ -7,7 +7,9 @@ Rails.application.routes.draw do
   get 'great' => 'static_pages#great'
 
   devise_for :users
-  get 'users/:id' => 'users#show', as: :user
+  get 'user/:id' => 'users#show', as: :user
+  get 'user/:id/followers' => 'users#followers', as: :followers
+  get 'user/:id/followeds' => 'users#followings', as: :followings
 
   resources :targets do
      resources :days

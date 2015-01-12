@@ -1,0 +1,32 @@
+<% provide(:title, "#{User.find(params[:id]).name}的#{@title}列表") %>
+
+<div class="ui grid">
+	<div class="twelve wide column">
+		<div class="ui dividing header">
+			<%= User.find(params[:id]) == current_user ? "我" : User.find(params[:id]).name %>的<%= @title %>列表
+		</div>
+		<div class="ui four cards">
+			<% @users.each do |user| %>
+				<%= link_to user_path(user), class: "card" do %>
+					<div class="image"><%= image_tag user.avatar.url %></div>
+					<div class="content">
+						<div class="header"><%= user.name %></div>
+						<div class="meta">
+							<div class="date">注册于<%= user.created_at.strftime "%Y年%m月%d日" %></div>
+						</div>
+						<div class="description"><%= user.introduce %></div>
+					</div>
+					<div class="extra content">
+						<div>
+							<i class="pink user icon"></i><%= user.followers.count %> 粉丝
+						</div>
+					</div>
+				<% end %>
+			<% end %>
+		</div>
+		<%= will_paginate @users, { class: 'flickr_pagination', next_label: ">>", previous_label: "<<" } %>
+	</div>
+	<div class="four wide column">
+		<%= render partial: 'users/sidebar', locals: { user: User.find(params[:id]) } %>
+	</div>
+</div>

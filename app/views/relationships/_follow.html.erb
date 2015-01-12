@@ -1,29 +1,29 @@
 <div class="ui inverted segment" id="follow">
 	<div class="ui grid">
 		<div class="ui four wide column">
-			<div class="ui mini inverted pink statistic">
-					<div class="value"><%= user.followers.count %></div>
-					<div class="label">粉丝</div>
-				</div>
+			<%= link_to followers_path(user), class: "ui mini inverted pink statistic" do %>
+				<div class="value"><%= user.followers.count %></div>
+				<div class="label">粉丝</div>
+			<% end %>
 		</div>
 		<div class="ui four wide column">
-			<div class="ui mini inverted blue statistic">
-					<div class="value"><%= user.followings.count %></div>
-					<div class="label">关注</div>
-				</div>
+			<%= link_to followings_path(user), class: "ui mini inverted blue statistic" do %>
+				<div class="value"><%= user.followings.count %></div>
+				<div class="label">关注</div>
+			<% end %>
 		</div>
 		<div class="ui eight wide column">
-				<% if current_user.following?(user) %>
-					<%= form_for(current_user.relationships.find_by(following_id: user.id), method: :delete, remote: true) do |f| %>
+			<% if current_user.following?(user) %>
+				<%= form_for(current_user.relationships.find_by(following_id: user.id), method: :delete, remote: true) do |f| %>
+				<div><%= f.hidden_field :following_id %></div>
+					<%= f.submit "Unfollow", class: "ui inverted teal button" %>
+				<% end %>
+			<% else %>
+				<%= form_for(current_user.relationships.build(following_id: user.id), remote: true) do |f| %>
 					<div><%= f.hidden_field :following_id %></div>
-						<%= f.submit "Unfollow", class: "ui inverted teal button" %>
-					<% end %>
-				<% else %>
-					<%= form_for(current_user.relationships.build(following_id: user.id), remote: true) do |f| %>
-						<div><%= f.hidden_field :following_id %></div>
-						<%= f.submit "Follow", class: "ui inverted blue button" %>
-					<% end %>
-				<% end unless current_user == user %>
+					<%= f.submit "Follow", class: "ui inverted blue button" %>
+				<% end %>
+			<% end unless current_user == user %>
 		</div>
 	</div>
 </div>

@@ -28,7 +28,7 @@
 						<%= link_to "个人信息", user_path(current_user), class: "item" %>
 						<%= link_to "设置", edit_user_registration_path, class: "item" %>
 						<div class="ui divider"></div>
-						<%= link_to "登出", destroy_user_session_path, method: :delete, class: "item" %>
+						<%= link_to "登出", destroy_user_session_path, class: "item" %>
 					</div>
 				</div>
 			<% else %>
