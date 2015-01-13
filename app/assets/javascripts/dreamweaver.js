@@ -3,9 +3,9 @@ $(document).on("page:change", function(){
 		on: 'hover'
 	});
 	$('.menu .item').tab();
-	$('#t_progress').progress();
 	$('.message .close').on('click', function(){
 		$(this).closest('.message').fadeOut();
 	});
 	$('.ui.accordion').accordion();
+	$('.progress').progress();
 });

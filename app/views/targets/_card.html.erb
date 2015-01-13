@@ -27,7 +27,7 @@
 			<%= image_tag target.user.avatar.url, class: "ui avatar image" %><%= target.user.name %>
 		</div>
 	</div>
-	<div class="ui red bottom attached progress">
+	<div class="ui red bottom attached progress" id="card_progress" data-percent=<%= target.percent %>>
 		<div class="bar"></div>
 	</div>		
 <% end %>

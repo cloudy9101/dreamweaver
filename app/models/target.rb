@@ -15,6 +15,14 @@ class Target < ActiveRecord::Base
 
   scope :great, -> { where('great = ?', 1) }
 
+  def plan_days_count
+    (finish_time - start_time).to_i
+  end
+
+  def percent
+    ((days.count.to_f / plan_days_count) * 100).to_i
+  end
+
   def followed?(user)
     followed_users.include?(user)
   end
