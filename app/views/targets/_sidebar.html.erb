@@ -1,13 +1,17 @@
 <div class="ui card">
 	<div class="content">
-		<div class="header"><%=image_tag current_user.avatar.url, class: "ui avatar image" %><%= link_to current_user.name, targets_path %></div>
+		<div class="header"><%=image_tag current_user.avatar.url, class: "ui avatar image" %><%= link_to current_user.name, user_path(current_user) %></div>
 		<div class="description"><%= current_user.introduce %></div>
 	</div>
-	<%= link_to new_target_path do %>
-	<div class="ui bottom attached blue button">
-		<i class="add icon"></i>创建新目标
+	<div class="ui bottom attached 2 fluid buttons">
+		<%= link_to new_target_path, class: "ui blue button" do %>
+			<i class="add icon"></i>创建新目标
+		<% end %>
+		<div class="or"></div>
+		<%= link_to targets_path, class: "ui pink button" do %>
+			<i class="user icon"></i>我的目标
+		<% end %>
 	</div>
-	<% end %>
 </div>
 
 <%= render partial: 'relationships/follow', locals: { user: current_user } %>

@@ -1,0 +1,27 @@
+<div class="ui grid">
+	<div class="six wide column">
+		<div class="ui dividing header">关注的用户动态</div>
+		<div class="ui segment">
+			<div class="ui feed">
+				<% @following_events.each do |event| %>
+					<%= render partial: "item", locals: { event: event } %>
+				<% end %>
+			</div>
+		</div>
+	</div>
+	<div class="six wide column">
+		<div class="ui dividing header">
+			关注的目标动态
+		</div>
+		<div class="ui segment">
+			<div class="ui feed">
+				<% @following_target_events.each do |event| %>
+					<%= render partial: "item", locals: { event: event } %>
+				<% end %>
+			</div>
+		</div>
+	</div>
+	<div class="four wide column">
+		<%= render partial: 'targets/sidebar', locals: { user: current_user } %>
+	</div>
+</div>

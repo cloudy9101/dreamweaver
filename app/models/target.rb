@@ -35,6 +35,11 @@ class Target < ActiveRecord::Base
     days.find_by_date_at(Date.today) ? true : false
   end
 
+  def self.from_followings_by(user)
+    following_ids = user.following_ids
+    where("user_id IN (?)", following_ids)
+  end
+
   def time_cannot_be_in_the_past
   	if start_time.present? && start_time < Date.today
   		errors.add(:start_time, "开始时间不能早于今日日期")
