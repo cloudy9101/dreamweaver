@@ -3,6 +3,16 @@
 <div class="ui grid">
 	<div class="twelve wide column">
 		<div class="ui dividing header">创建新目标</div>
+		<% if @new_target.errors.any? %>
+			<div class="ui warning message">
+				<div class="header">请检查您的输入</div>
+				<ul class="list">
+					<% @new_target.errors.full_messages.each do |msg| %>
+						<li><%= msg %></li>
+					<% end %>
+				</ul>
+			</div>
+		<% end %>
 		<%= form_for @new_target, html: { class: "ui large form segment", role: "form" } do |f| %>
 			<div class="inline field">
 				<%= f.label :name, "目标标题：" %>
