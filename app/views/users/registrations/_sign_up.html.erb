@@ -1,6 +1,16 @@
+<% if user.errors.any? %>
+			<div class="ui warning message">
+				<div class="header">请检查您的输入</div>
+				<ul class="list">
+					<% user.errors.full_messages.each do |msg| %>
+						<li><%= msg %></li>
+					<% end %>
+				</ul>
+			</div>
+<% end %>
 <%= form_for user, url: user_registration_path(user), html: { class: "ui form", role: "form", multipart: true } do |f| %>
 	<div class="ui segment">
-		<h2 class="ui black center aligned header">Welcome</h2>
+			<h2 class="ui black center aligned header">Welcome</h2>
 	</div>
 	<div class="inline field">
 		<%= f.label :avatar, "头像", class: "three wide field" %>

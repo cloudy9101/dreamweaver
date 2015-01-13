@@ -1,7 +1,10 @@
 <% if user.errors.any? %>
-	<div class="alert alert-warning" role="alert">
+	<div class="ui warning message" role="alert">
+		<div class="header">请检查您的输入</div>
 		<% user.errors.full_messages.each do |msg| %>
-			<li><%= msg %></li>
+			<ul class="list">
+				<li><%= msg %></li>
+			</ul>
 		<% end %>
 	</div>
 <% end %>
