@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+
   def create
   	@target = Target.find(params[:comment][:target_id])
   	@comment = current_user.comments.new(comment_params)

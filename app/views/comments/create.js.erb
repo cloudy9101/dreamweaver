@@ -1,1 +1,11 @@
-$("<%= j render partial: 'comments/comment', locals: { comment: @comment } %>").fadeIn("slow").prependTo('#comments');
+var comm = "<%= j render partial: 'comments/comment', locals: { comment: @comment } %>";
+
+<% if @comment.root_id != 0 %>
+	$("#comment_<%= @comment.root_id %>").replaceWith("<%= j render partial: 'comments/comment', locals: { comment: Comment.find(@comment.root_id) } %>");
+<% else %>
+	$("#comments").find('#comments_paginate').before(comm);
+<% end %>
+
+$(".reply_toggle").click(function(){
+	$(this).parent().siblings('.reply_form').toggle();
+});

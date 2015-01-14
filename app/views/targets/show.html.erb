@@ -88,9 +88,9 @@
 			</div>
 		</div>
 
-		<div class="fluid ui big blue inverted toggle button" id="toggle_comment">展开评论</div>
-
-		<%= render partial: 'comments/list', locals: { target: @target, comments: @comments } %>
+		<%= link_to "展开评论", target_path(@target), class: "fluid ui big blue inverted button", id: "toggle_comment", remote: true %>
+		
+		<%#= render partial: 'comments/list', locals: { target: @target, comments: @comments } %>
 
 		<div class="ui small header">
 			关注者
