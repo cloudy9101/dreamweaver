@@ -1,0 +1,18 @@
+<div class="ui collapsed threaded comments" id="comments">
+	<% comments.each do |comment| %>
+		<%= render partial: 'comments/comment', locals: { comment: comment } %>
+	<% end %>
+	
+	<div id="comments_paginate">
+		<%= will_paginate comments, { class: "flickr_pagination", next_label: ">>", previous_label: "<<" } %>
+	</div>
+
+	<%= form_for(target.comments.new, url: { controller: 'comments', action: 'create' }, html: { class: "ui reply form" }, remote: true) do |f| %>
+		<div class="field">
+			<%= f.text_area :content %>	
+		</div>
+		<%= f.hidden_field :target_id %>
+		<%= f.submit '添加评论', class: 'ui blue button' %>
+	<% end %>	
+</div>
+

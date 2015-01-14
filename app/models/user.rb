@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
 
 	has_many :targets, dependent: :destroy
 	has_many :days, dependent: :destroy
+	has_many :comments, dependent: :destroy
 
 	
 	has_many :relationships, foreign_key: 'follower_id'

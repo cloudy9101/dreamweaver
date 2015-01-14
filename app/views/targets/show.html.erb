@@ -88,6 +88,10 @@
 			</div>
 		</div>
 
+		<div class="fluid ui big blue inverted toggle button" id="toggle_comment">展开评论</div>
+
+		<%= render partial: 'comments/list', locals: { target: @target, comments: @comments } %>
+
 		<div class="ui small header">
 			关注者
 		</div>
@@ -102,6 +106,8 @@
 				<% end %>
 			<% end unless @target.followed_users.empty? %>
 		</div>
+		
+		
 
 	</div>
 

@@ -2,6 +2,7 @@ class Target < ActiveRecord::Base
   belongs_to :user
   belongs_to :category
   has_many :days, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   has_and_belongs_to_many :followed_users, class_name: "User", foreign_key: 'target_id', association_foreign_key: "user_id", join_table: 'users_targets'
 

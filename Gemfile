@@ -40,10 +40,9 @@ gem 'spring',        group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-# Bootstrap
-gem 'bootstrap-sass', '~> 3.3.1'
+# will_paginate
 gem 'will_paginate', '~> 3.0.6'
-gem 'will_paginate-bootstrap'
+
 
 # devise user manager
 gem 'devise'

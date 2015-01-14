@@ -1,0 +1,31 @@
+<div class="comment" id="comment_<%= comment.id %>">
+	<%= link_to user_path(comment.user), class: "avatar" do %>
+		<%= image_tag comment.user.avatar.url %>
+	<% end %>
+	<div class="content">
+		<%= link_to comment.user.name, user_path(comment.user), class: "author" %>
+		<div class="metadata">
+			<span class="date"><%= comment.time_ago %></span>
+		</div>
+		<div class="text"><%= comment.content %></div>
+		<div class="actions">
+			<a class="reply reply_toggle">回复</a>
+			<%= link_to "删除", "/comments/#{comment.id}", method: :delete, remote: true, data: { confirm: "确定删除评论？" } if comment.user == current_user %>
+		</div>
+		<%= form_for comment.target.comments.new(root_id: "#{comment.id}"), url: { controller: 'comments', action: 'create' }, html: { class: 'ui reply form reply_form', style: "display: none;" } do |f| %>
+			<div class="field">
+				<%= f.text_area :content %>
+			</div>
+			<%= f.hidden_field :target_id %>
+			<%= f.hidden_field :root_id %>
+			<%= f.submit '添加回复', class: "ui primary button" %>
+		<% end %>
+	</div>
+	<% if comment.replys.any? %>
+		<div class="comments">
+			<% comment.replys.each do |reply| %>
+				<%= render partial: 'comments/comment', locals: { comment: reply } %>
+			<% end %>
+		</div>
+	<% end %>
+</div>

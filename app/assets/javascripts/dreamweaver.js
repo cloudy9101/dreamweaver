@@ -8,4 +8,11 @@ $(document).on("page:change", function(){
 	});
 	$('.ui.accordion').accordion();
 	$('.progress').progress();
+	$('#toggle_comment').click(function(){
+		$('#comments').toggle();
+	});
+	$('#comments_paginate').find('a').attr("data-remote", true);
+	$(".reply_toggle").click(function(){
+		$(this).parent().siblings('.reply_form').toggle();
+	});
 });

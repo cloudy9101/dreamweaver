@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  post 'comments/create' => 'comments#create'
+
+  delete 'comments/:id' => 'comments#destroy'
+
   root 'static_pages#index'
 
   get 'hot' => 'static_pages#hot'

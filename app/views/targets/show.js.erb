@@ -1,0 +1,6 @@
+$('#comments').replaceWith("<%= j render partial: 'comments/list', locals: { target: @target, comments: @comments } %>");
+$('#comments').toggle();
+$('#comments_paginate').find('a').attr("data-remote", true);
+$(".reply_toggle").click(function(){
+		$(this).parent().siblings('.reply_form').toggle();
+	});
