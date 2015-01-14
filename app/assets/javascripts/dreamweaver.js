@@ -8,7 +8,4 @@ $(document).on("page:change", function(){
 	});
 	$('.ui.accordion').accordion();
 	$('.progress').progress();
-	$('.ui.sticky').sticky({
-		content: '#container'
-	});
 });
