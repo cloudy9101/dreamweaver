@@ -1,4 +1,6 @@
 class Day < ActiveRecord::Base
+  include Timeago
+  
   belongs_to :target
   belongs_to :user
   validates :date_at, :comment, :target_id, :user_id, presence: true

@@ -3,7 +3,7 @@
 		<% when event.class == Target %>
 			<div class="label"><%= image_tag event.user.avatar.url, class: "ui avatar image" %></div>
 			<div class="content">
-				<div class="date"><%= timeago_tag event.created_at, :nojs => true, :limit => 10.days.ago, :lang => "zh-CN" %></div>
+				<div class="date"><%= event.time_ago %></div>
 				<div class="summary">
 					<%= link_to event.user.name, user_path(event.user) %>创建了目标<%=link_to event.name, target_path(event) %>
 				</div>
@@ -11,7 +11,7 @@
 		<% when event.class == Day %>
 			<div class="label"><%= image_tag event.user.avatar.url, class: "ui avatar image" %></div>
 			<div class="content">
-				<div class="date"><%= timeago_tag event.created_at, :nojs => true, :limit => 10.days.ago, :lang => "zh-CN" %></div>
+				<div class="date"><%= event.time_ago %></div>
 				<div class="summary">
 					<%= link_to event.user.name, user_path(event.user) %>在目标<%=link_to event.target.name, target_path(event.target) %>打卡@<%= event.date_at %>
 				</div>
@@ -19,7 +19,7 @@
 		<% when event.class == Relationship %>
 			<div class="label"><%= image_tag event.follower.avatar.url, class: "ui avatar image" %></div>
 			<div class="content">
-				<div class="date"><%= timeago_tag event.created_at, :nojs => true, :limit => 10.days.ago, :lang => "zh-CN" %></div>
+				<div class="date"><%= event.time_ago %></div>
 				<div class="summary">
 					<%= link_to event.follower.name, user_path(event.follower) %>关注了<%=link_to event.following.name, user_path(event.following) %>
 				</div>

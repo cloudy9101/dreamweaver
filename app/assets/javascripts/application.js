@@ -13,8 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require rails-timeago
-//= require locales/jquery.timeago.zh-CN.js
 //= require_tree .
 
 Turbolinks.enableProgressBar();

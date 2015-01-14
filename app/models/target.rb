@@ -1,4 +1,6 @@
 class Target < ActiveRecord::Base
+  include Timeago
+  
   belongs_to :user
   belongs_to :category
   has_many :days, dependent: :destroy
