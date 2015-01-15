@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   resources :targets do
      resources :days
      member do
-      patch 'followed'
+      post 'followed'
       patch 'unfollowed'
       patch 'like'
       patch 'unlike'

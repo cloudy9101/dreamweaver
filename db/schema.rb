@@ -11,10 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150114073119) do
+ActiveRecord::Schema.define(version: 20150115100132) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "abstract_targets", force: true do |t|
+    t.string   "name"
+    t.text     "detail"
+    t.integer  "category_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -55,16 +63,14 @@ ActiveRecord::Schema.define(version: 20150114073119) do
   end
 
   create_table "targets", force: true do |t|
-    t.string   "name"
-    t.text     "detail"
     t.date     "start_time"
     t.date     "finish_time"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "great",       default: 0
-    t.integer  "category_id"
-    t.integer  "hits",        default: 0
+    t.integer  "great",              default: 0
+    t.integer  "hits",               default: 0
+    t.integer  "abstract_target_id"
   end
 
   add_index "targets", ["user_id"], name: "index_targets_on_user_id", using: :btree

@@ -92,21 +92,22 @@
 		
 		<%#= render partial: 'comments/list', locals: { target: @target, comments: @comments } %>
 
-		<div class="ui small header">
-			关注者
-		</div>
+		<% unless @target.followed_users.empty? %>
+			<div class="ui small header">
+				他们也建立了该目标
+			</div>
 
-		<div class="ui eight doubling cards">
-			<% @target.followed_users.limit(8).each do |followed_user| %>
-				<%= link_to user_path(followed_user), class: "card" do %>
-					<div class="image"><%= image_tag followed_user.avatar.url %></div>
-					<div class="content">
-						<div class="header"><%= followed_user.name %></div>
-					</div>
+			<div class="ui eight doubling cards">
+				<% @target.followed_users.limit(8).each do |followed_user| %>
+					<%= link_to user_path(followed_user), class: "card" do %>
+						<div class="image"><%= image_tag followed_user.avatar.url %></div>
+						<div class="content">
+							<div class="header"><%= followed_user.name %></div>
+						</div>
+					<% end %>
 				<% end %>
-			<% end unless @target.followed_users.empty? %>
-		</div>
-		
+			</div>
+		<% end %>
 		
 
 	</div>

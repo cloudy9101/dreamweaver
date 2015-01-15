@@ -1,3 +1,3 @@
 class Category < ActiveRecord::Base
-	has_many :targets
+	has_many :abstract_targets
 end

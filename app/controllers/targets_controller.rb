@@ -18,13 +18,17 @@ class TargetsController < ApplicationController
   end
 
   def new
-    @new_target = Target.new
+    # @new_target = Target.new
+    @abstract_target = current_user.abstract_targets.new
+    @abstract_target.targets.build
   end
 
   def create
-    @new_target = current_user.targets.build(target_params)
-    if @new_target && @new_target.save
-      redirect_to target_path(@new_target)
+    @abstract_target = AbstractTarget.new(target_params)
+    @abstract_target.targets.first.user = current_user
+    if @abstract_target && @abstract_target.save
+      @abstract_target.followed_users << current_user
+      redirect_to target_path(@abstract_target.targets.first)
     else
       render 'new'
     end
@@ -45,22 +49,14 @@ class TargetsController < ApplicationController
   end
 
   def followed
-    @target = Target.find(params[:id])
-    if @target.user != current_user && !@target.followed_users.include?(current_user)
+    @target = Target.new(follow_params)
+    if @target.abstract_target.targets.find_by_user_id(current_user.id)
+      redirect_to Target.find(params[:id])
+    else
+      @target.user = current_user
+      @target.save
       @target.followed_users << current_user
-    end
-    respond_to do |format|
-      format.html { redirect_to @target }
-      format.js {}
-    end
-  end
-
-  def unfollowed
-    @target = Target.find(params[:id])
-    @target.followed_users.destroy(current_user) if @target.followed?(current_user)
-    respond_to do |format|
-      format.html { redirect_to @target }
-      format.js {}
+      redirect_to @target
     end
   end
 
@@ -86,6 +82,10 @@ class TargetsController < ApplicationController
 
   private
     def target_params
-      params.require(:target).permit(:name, :detail, :start_time, :finish_time, :category_id)
+      params.require(:abstract_target).permit(:name, :detail, :category_id, targets_attributes: [:id, :start_time, :finish_time])
+    end
+
+    def follow_params
+      params.require(:target).permit(:start_time, :finish_time, :abstract_target_id)
     end
 end

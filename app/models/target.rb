@@ -2,21 +2,34 @@ class Target < ActiveRecord::Base
   include Timeago
   
   belongs_to :user
-  belongs_to :category
+  belongs_to :abstract_target
   has_many :days, dependent: :destroy
   has_many :comments, dependent: :destroy
 
-  has_and_belongs_to_many :followed_users, class_name: "User", foreign_key: 'target_id', association_foreign_key: "user_id", join_table: 'users_targets'
-
   has_and_belongs_to_many :like_users, class_name: "User", foreign_key: 'target_id', association_foreign_key: "user_id", join_table: 'likeable_targets_like_users'
 
-  validates :name, :detail, :start_time, :finish_time, :category_id, presence: true
-  validates :name, uniqueness: true
+  validates :start_time, :finish_time, presence: true
   validate :time_cannot_be_in_the_past, :finish_time_cannot_earlier_than_start_time
 
   self.per_page = 8
 
   scope :great, -> { where('great = ?', 1) }
+
+  def name
+    abstract_target.name
+  end
+
+  def detail
+    abstract_target.detail
+  end
+
+  def category
+    abstract_target.category
+  end
+
+  def followed_users
+    abstract_target.followed_users
+  end
 
   def plan_days_count
     (finish_time - start_time).to_i

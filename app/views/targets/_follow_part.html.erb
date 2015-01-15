@@ -2,24 +2,19 @@
 	<div class="ui horizontal statistics">
 		<div class="purple statistic">
 			<div class="value"><%= target.followed_users.count %></div>
-			<div class="label">关注</div>
+			<div class="label">人也建立了该目标</div>
 		</div>
 		<div class="pink statistic">
 			<div class="value"><%= target.like_users.count %></div>
-			<div class="label">赞</div>
+			<div class="label">人赞过</div>
 		</div>
 	</div>
 	<div class="ui buttons">
 		<% if target.followed?(current_user) %>
-			<%= form_for(target, url: { action: "unfollowed" }, remote: true, html: { style: "display: inline;"}) do |f| %>
-				<div><%= f.hidden_field :id %></div>
-				<%= f.submit "取消关注", class: "ui blue button" %>
-			<% end %>
+			<%= link_to "我的进度", target_path(target.abstract_target.targets.find_by_user_id(current_user.id)), class: "ui blue button" %>
 		<% else %>
-			<%= form_for(target, url: { action: "followed" }, remote: true, html: { style: "display: inline;"}) do |f| %>
-				<div><%= f.hidden_field :id %></div>
-				<%= f.submit "关注", class: "ui blue button" %>
-			<% end %>
+			<div class="ui blue button" id="follow">建立目标</div>
+			<%= render partial: 'targets/follow_part_modal', locals: { target: target.abstract_target.targets.new } %>
 		<% end %>
 
 		<% if target.liked?(current_user) %>

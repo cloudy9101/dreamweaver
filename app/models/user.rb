@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
 	has_many :targets, dependent: :destroy
+	has_many :abstract_targets, through: :targets
+
 	has_many :days, dependent: :destroy
 	has_many :comments, dependent: :destroy
 
@@ -18,7 +20,7 @@ class User < ActiveRecord::Base
 	has_many :followings, through: :relationships
 	has_many :followers, through: :reverse_relationships
 
-	has_and_belongs_to_many :following_targets, class_name: "Target", foreign_key: 'user_id', association_foreign_key: "target_id", join_table: 'users_targets'
+	has_and_belongs_to_many :following_targets, class_name: "AbstractTarget", foreign_key: 'user_id', association_foreign_key: "target_id", join_table: 'users_targets'
 
 	has_and_belongs_to_many :likeable_targets, class_name: "Target", foreign_key: 'user_id', association_foreign_key: "target_id", join_table: 'likeable_targets_like_users'
 

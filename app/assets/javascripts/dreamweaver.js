@@ -8,4 +8,7 @@ $(document).on("page:change", function(){
 	});
 	$('.ui.accordion').accordion();
 	$('.progress').progress();
+  $('#follow').on('click', function(){
+    $('.ui.modal').modal('show');
+  });
 });
