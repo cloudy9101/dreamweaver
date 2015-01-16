@@ -5,7 +5,7 @@
 		<div class="ui dividing header"><%= @ctg.name %></div>
 		<div class="ui two cards">
 			<% @targets.each do |target| %>
-				<%= render partial: 'targets/card', locals: { target: target } %>
+				<%= render partial: 'card', locals: { target: target } %>
 			<% end %>
 		</div>
 			<%= will_paginate @targets, { class: 'flickr_pagination', next_label: ">>", previous_label: "<<" } %>

@@ -4,7 +4,7 @@
   <div class="content">
     <div class="image"><i class="trophy icon"></i></div>
     <div class="description">
-      <%= form_for target, url: { controller: :targets, action: :followed }, html: { class: "ui form" } do |f| %>
+      <%= form_for target, url: targets_path, html: { class: "ui form" } do |f| %>
         <div class="field">
           <%= f.label :start_time, '开始时间' %>
           <%= f.date_field :start_time %>

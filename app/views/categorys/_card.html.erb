@@ -1,0 +1,27 @@
+<%= link_to target, class: "ui card" do %>
+  <div class="content">
+    <div class="header"><%= target.name %></div>
+    <div class="meta">
+      <div class="category"><%= target.category.name %></div>
+    </div>
+    <div class="description">
+      <%= target.detail %>
+    </div>
+  </div>
+  <div class="extra content">
+    <div class="left floated ui label">
+      参与
+      <div class="detail">
+        <%= target.users.count %>
+      </div>
+    </div>
+    <div class="right floated author">
+      <% target.users.limit(8).each do |user| %>
+        <%= image_tag user.avatar.url, class: "ui avatar image" %>
+      <% end %>
+      <% if target.users.count > 8 %>
+        ......
+      <% end %>
+    </div>
+  </div>
+<% end %>

@@ -28,7 +28,11 @@ class Target < ActiveRecord::Base
   end
 
   def followed_users
-    abstract_target.followed_users
+    abstract_target.users
+  end
+
+  def followed_targets
+    abstract_target.targets
   end
 
   def plan_days_count
@@ -40,7 +44,7 @@ class Target < ActiveRecord::Base
   end
 
   def followed?(user)
-    followed_users.include?(user)
+    abstract_target.users.include?(user)
   end
 
   def liked?(user)

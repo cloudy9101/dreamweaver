@@ -13,7 +13,7 @@
 				</ul>
 			</div>
 		<% end %>
-		<%= form_for @abstract_target,url: { controller: :targets, action: :create }, html: { class: "ui large form segment", role: "form" } do |f| %>
+		<%= form_for @abstract_target, url: abstract_targets_path, html: { class: "ui large form segment", role: "form" } do |f| %>
 			<div class="inline field">
 				<%= f.label :name, "目标标题：" %>
 				<%= f.text_field :name, class: "twelve wide field", placeholder: "例如：锻炼身体" %>

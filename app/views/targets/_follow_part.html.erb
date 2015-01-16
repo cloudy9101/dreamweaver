@@ -1,9 +1,9 @@
 <div id="follow_part">
 	<div class="ui horizontal statistics">
-		<div class="purple statistic">
+		<%= link_to abstract_target_path(target.abstract_target), class: "purple statistic" do %>
 			<div class="value"><%= target.followed_users.count %></div>
 			<div class="label">人也建立了该目标</div>
-		</div>
+		<% end %>
 		<div class="pink statistic">
 			<div class="value"><%= target.like_users.count %></div>
 			<div class="label">人赞过</div>
@@ -11,7 +11,7 @@
 	</div>
 	<div class="ui buttons">
 		<% if target.followed?(current_user) %>
-			<%= link_to "我的进度", target_path(target.abstract_target.targets.find_by_user_id(current_user.id)), class: "ui blue button" %>
+			<%= link_to "我的进度", target_path(target.followed_targets.find_by(user: current_user)), class: "ui blue button" %>
 		<% else %>
 			<div class="ui blue button" id="follow">建立目标</div>
 			<%= render partial: 'targets/follow_part_modal', locals: { target: target.abstract_target.targets.new } %>

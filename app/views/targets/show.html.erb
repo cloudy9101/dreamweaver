@@ -9,8 +9,9 @@
 					<div class="twelve wide column">
 						<div class="ui horizontal list">
 							<div class="ui teal large label"><i class="icon play"></i>开始时间：<%= @target.start_time %></div>
-							<div class="ui red large label"><i class="icon stop"></i>结束时间：<%= @target.finish_time %></div>
+							<div class="ui orange large label"><i class="icon stop"></i>结束时间：<%= @target.finish_time %></div>
 						</div>
+						<%= link_to "删除目标", target_path(@target), method: :delete, class: "ui tiny red button" if @target.user == current_user %>
 						<div class="ui green message">
 							<i class="icon content"></i>目标描述：
 							<p><%= @target.detail %></p>
@@ -89,8 +90,6 @@
 		</div>
 
 		<%= link_to "展开评论", target_path(@target), class: "fluid ui big blue inverted button", id: "toggle_comment", remote: true %>
-		
-		<%#= render partial: 'comments/list', locals: { target: @target, comments: @comments } %>
 
 		<% unless @target.followed_users.empty? %>
 			<div class="ui small header">
@@ -98,11 +97,17 @@
 			</div>
 
 			<div class="ui eight doubling cards">
-				<% @target.followed_users.limit(8).each do |followed_user| %>
-					<%= link_to user_path(followed_user), class: "card" do %>
-						<div class="image"><%= image_tag followed_user.avatar.url %></div>
+				<% @target.followed_targets.limit(8).each do |followed_target| %>
+					<%= link_to target_path(followed_target), class: "card" do %>
+						<div class="image"><%= image_tag followed_target.user.avatar.url %></div>
 						<div class="content">
-							<div class="header"><%= followed_user.name %></div>
+							<div class="header"><%= followed_target.user.name %></div>
+							<div class="meta">
+								<div>打卡<%= followed_target.days.count %>天</div>
+							</div>
+						</div>
+						<div class="extra content">
+							<div>完成度<%= followed_target.percent %>%</div>
 						</div>
 					<% end %>
 				<% end %>

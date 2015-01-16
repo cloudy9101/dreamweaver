@@ -17,22 +17,18 @@ class TargetsController < ApplicationController
     end
   end
 
-  def new
-    # @new_target = Target.new
-    @abstract_target = current_user.abstract_targets.new
-    @abstract_target.targets.build
-  end
-
   def create
-    @abstract_target = AbstractTarget.new(target_params)
-    @abstract_target.targets.first.user = current_user
-    if @abstract_target && @abstract_target.save
-      @abstract_target.followed_users << current_user
-      redirect_to target_path(@abstract_target.targets.first)
+    @target = Target.new(follow_params)
+    if @target.abstract_target.users.include?(current_user)
+      flash[:error] = "对不起，您已有该目标"
+      redirect_to @target.abstract_target.targets.find_by_user_id(current_user.id)
     else
-      render 'new'
+      @target.user = current_user
+      @target.save
+      redirect_to @target
     end
   end
+
 
   def edit
   end
@@ -44,20 +40,9 @@ class TargetsController < ApplicationController
     @target = Target.find(params[:id])
     if @target.user_id == current_user.id
       @target.destroy
+      @target.abstract_target.destroy if @target.abstract_target.targets.empty?
     end
     redirect_to root_path
-  end
-
-  def followed
-    @target = Target.new(follow_params)
-    if @target.abstract_target.targets.find_by_user_id(current_user.id)
-      redirect_to Target.find(params[:id])
-    else
-      @target.user = current_user
-      @target.save
-      @target.followed_users << current_user
-      redirect_to @target
-    end
   end
 
   def like
@@ -81,10 +66,6 @@ class TargetsController < ApplicationController
   end
 
   private
-    def target_params
-      params.require(:abstract_target).permit(:name, :detail, :category_id, targets_attributes: [:id, :start_time, :finish_time])
-    end
-
     def follow_params
       params.require(:target).permit(:start_time, :finish_time, :abstract_target_id)
     end

@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  # get 'abstract_target/:id' => 'abstract_targets#show', as: :abstract_target
+
   post 'comments/create' => 'comments#create'
 
   delete 'comments/:id' => 'comments#destroy'
@@ -15,11 +17,11 @@ Rails.application.routes.draw do
   get 'user/:id/followers' => 'users#followers', as: :followers
   get 'user/:id/followeds' => 'users#followings', as: :followings
 
+  resources :abstract_targets, only: [:new, :create, :show]
+
   resources :targets do
      resources :days
      member do
-      post 'followed'
-      patch 'unfollowed'
       patch 'like'
       patch 'unlike'
     end
