@@ -5,7 +5,7 @@
 		<h3 class="ui dividing header">热门目标</h3>
 		<div class="ui two cards">
 			<% @hots.each do |hot| %>
-				<%= render partial: 'targets/card', locals: { target: hot } %>
+				<%= render partial: 'categorys/card', locals: { target: hot } %>
 			<% end %>
 		</div>
 		<%= will_paginate @hots, { class: "flickr_pagination", next_label: ">>", previous_label: "<<" } %>

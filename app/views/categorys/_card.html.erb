@@ -1,6 +1,17 @@
 <%= link_to target, class: "ui card" do %>
   <div class="content">
-    <div class="header"><%= target.name %></div>
+    <div class="right floated ui pink label">
+      热度
+      <div class="detail">
+        <%= target.hits || 0 %>
+      </div>
+    </div>
+    <div class="header">
+      <%= target.name %>
+      <% if target.great? %>
+        <i class="star yellow icon"></i>
+      <% end %>
+    </div>
     <div class="meta">
       <div class="category"><%= target.category.name %></div>
     </div>

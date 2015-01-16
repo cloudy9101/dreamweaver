@@ -13,10 +13,10 @@ class StaticPagesController < ApplicationController
 	end
 
 	def hot
-		@hots = Target.all.order(hits: :desc).paginate(page: params[:page])
+		@hots = AbstractTarget.order(hits: :desc).all.paginate(page: params[:page])
 	end
 
 	def great
-		@targets = Target.great.order(created_at: :desc).paginate(:page => params[:page])
+		@targets = AbstractTarget.great.order(created_at: :desc).paginate(:page => params[:page])
 	end
 end

@@ -3,22 +3,30 @@
 		<div class="header">
 			<%= target.name %>
 			<% if target.record_today? %>
-				<i class="green check square icon"></i>
+				<i class="green check square icon" title="已打卡"></i>
 			<% else %>
-				<i class="disabled check square icon"></i>
+				<i class="disabled check square icon" title="未打卡"></i>
 			<% end %>
 		</div>
 		<div class="meta"><span class="category"><%= target.category.name %></span>
 		</div>
 		<div class="description"><%= target.detail %></div>
 	</div>
-	<div class="ui top right attached teal label"><i class="icon pointing up"></i><%= target.hits %></div>
+	<div class="ui top right attached teal label">
+		<i class="icon pointing up"></i><%= target.hits %>			
+	</div>
 	<div class="extra content">
 		<div class="ui left floated black label">
-			打卡<%= target.days.count %>天
+			打卡
+			<div class="detail">
+				<%= target.days.count %>
+			</div>
 		</div>
 		<div class="ui left floated purple label">
-			<%= target.followed_users.count %>同好
+			参与
+			<div class="detail">
+				<%= target.followed_users.count %>
+			</div>
 		</div>
 		<div class="ui left floated pink label">
 			<i class="heart icon"></i><%= target.like_users.count %>

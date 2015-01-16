@@ -1,0 +1,29 @@
+<%= link_to target_path(target), class: "card" do %>
+  <div class="content">
+    <div class="header">完成度：<%= target.percent %>%</div>
+    <div class="description">
+      <div class="ui green label">开始时间：
+        <div class="detail"><%= target.start_time %></div>
+      </div>
+      <div class="ui red label">结束时间：
+        <div class="detail"><%= target.finish_time %></div>
+      </div>
+    </div>
+  </div>
+  <div class="extra content">
+    <div class="left floated">
+      <div class="ui teal label">打卡
+        <div class="detail"><%= target.days.count %></div>
+      </div>
+      <div class="ui teal label">
+        <i class="comment icon"></i><%= target.comments.count %>
+      </div>
+    </div>
+    <div class="right floated author">
+      <%= image_tag target.user.avatar.url, class: "ui avatar image" %><%= target.user.name %>
+    </div>
+  </div>
+  <div class="ui red bottom attached progress" id="card_progress" data-percent=<%= target.percent %>>
+    <div class="bar"></div>
+  </div>  
+<% end %>

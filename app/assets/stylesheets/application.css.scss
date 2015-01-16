@@ -26,3 +26,10 @@
 	border-radius: 50px;
 	border: 1px solid #e5e5e5;
 }
+
+.field_with_errors {
+  display: inline;
+  border: 1px solid red;
+  margin: 0;
+  padding: 0;
+}

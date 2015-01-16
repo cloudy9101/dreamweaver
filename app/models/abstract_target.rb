@@ -1,4 +1,6 @@
 class AbstractTarget < ActiveRecord::Base
+  include Timeago
+
   has_many :targets
   accepts_nested_attributes_for :targets
 
@@ -8,4 +10,6 @@ class AbstractTarget < ActiveRecord::Base
 
   validates :name, :detail, :category_id, presence: true
   validates :name, :detail, uniqueness: true
+
+  scope :great, -> { where(great: true) }
 end

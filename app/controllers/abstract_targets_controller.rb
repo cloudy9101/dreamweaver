@@ -19,6 +19,7 @@ class AbstractTargetsController < ApplicationController
   def show
     @abstract_target = AbstractTarget.find(params[:id])
     @targets = @abstract_target.targets.order(created_at: :desc).paginate(:page => params[:page])
+    AbstractTarget.increment_counter(:hits, params[:id])
   end
 
   private

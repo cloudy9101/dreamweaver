@@ -3,6 +3,16 @@
 <div class="ui grid">
   <div class="twelve wide column">
     <div class="ui dividing header">编辑资料</div>
+    <% if resource.errors.any? %>
+      <div class="ui warning message">
+        <div class="header">请检查您的输入</div>
+        <ul class="list">
+          <% resource.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "ui segment form", role: "form" }) do |f| %>
       <div class="inline field">
         <%= f.label :email, "邮箱：", class: "two wide field" %>

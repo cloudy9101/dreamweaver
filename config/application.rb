@@ -19,5 +19,10 @@ module Dreamweaver
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     config.i18n.default_locale = "zh-CN"
+
+    # 表单出现错误时出现的HTML
+    config.action_view.field_error_proc = Proc.new do |html_tag, instance|
+        %Q(#{html_tag}<div class="field_with_errors"></div>).html_safe
+    end
   end
 end

@@ -1,11 +1,34 @@
 <div class="ui grid">
   <div class="twelve wide column">
-    <div class="ui dividing header">
-      <%= @abstract_target.name %>
+    <div class="ui inverted segment">
+      <div class="ui huge blue inverted header">
+        <i class="trophy icon"></i>
+        <div class="content">
+          <%= @abstract_target.name %>
+          <div class="sub header"><%= @abstract_target.category.name %></div>
+        </div>
+      </div>
+      <i class="content icon"></i>目标描述：<%= @abstract_target.detail %>
+      <div class="ui divider"></div>
+      <div class="ui pink label">首次创建时间：<%= @abstract_target.time_ago %></div>
+      <div class="ui pink label">热度
+        <div class="detail"><%= @abstract_target.hits %></div>
+      </div>
+      <div class="ui pink label">参与者
+        <div class="detail"><%= @abstract_target.users.count %></div>
+      </div>
+        <% unless @abstract_target.users.include?(current_user) %>
+          <div class="ui inverted blue mini button" id="follow" >建立目标</div>
+          <%= render partial: 'targets/follow_part_modal', locals: { target: @abstract_target.targets.new } %>
+        <% else %>
+          <%= link_to "我的进度", target_path(@abstract_target.targets.find_by(user: current_user)), class: "ui inverted blue mini button" %>
+        <% end %>
     </div>
+    
+    <div class="ui divider"></div>
     <div class="ui two cards">
       <% @targets.each do |target| %>
-        <%= render partial: 'targets/card', locals: { target: target } %>
+        <%= render partial: 'card', locals: { target: target } %>
       <% end %>
     </div>
     <%= will_paginate @targets, { class: 'flickr_pagination', next_label: ">>", previous_label: "<<" } %>

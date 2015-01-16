@@ -9,8 +9,7 @@ class TargetsController < ApplicationController
     @target = Target.find(params[:id])
     @comments = @target.comments.root.order(created_at: :desc).paginate(:page => params[:page], :per_page => 6)
     @today = @target.days.new
-    Target.increment_counter(:hits, params[:id]) unless @target.user == current_user
-
+    
     respond_to do |format|
       format.html {}
       format.js {}
