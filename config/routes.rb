@@ -1,11 +1,5 @@
 Rails.application.routes.draw do
 
-  # get 'abstract_target/:id' => 'abstract_targets#show', as: :abstract_target
-
-  post 'comments/create' => 'comments#create'
-
-  delete 'comments/:id' => 'comments#destroy'
-
   root 'static_pages#index'
 
   get 'hot' => 'static_pages#hot'
@@ -27,7 +21,27 @@ Rails.application.routes.draw do
     end
   end
 
+  post 'comments/create' => 'comments#create'
+
+  delete 'comments/:id' => 'comments#destroy'
+
   resources :relationships, only: [:create, :destroy]
+
+  resources :admins, only: [:index] do
+    collection do
+      get :targets
+      delete :delete_target
+      get :abstract_targets
+      delete :delete_abstract_target
+      get :users
+      delete :delete_user
+      get :log_in
+      post 'log_in' => 'admins#session_create'
+      delete :log_out
+      patch :change_category
+      patch :mark_great
+    end
+  end
 
  
   # The priority is based upon order of creation: first created -> highest priority.

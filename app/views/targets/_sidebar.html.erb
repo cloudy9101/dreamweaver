@@ -46,6 +46,15 @@
 <h4 class="ui top attached header">统计信息</h4>
 <div class="ui attached segment">
 	<ul>
+		<li>建立目标：<%= current_user.targets.count %></li>
+		<li>打卡：<%= current_user.days.count %></li>
+		<li>赞过：<%= current_user.likeable_targets.count %></li>
+	</ul>
+</div>
+
+<h4 class="ui top attached header">全站统计</h4>
+<div class="ui attached segment">
+	<ul>
 		<li>全站目标总数：<%= Target.all.count %></li>
 		<li>全站打卡天数：<%= Day.all.count %></li>
 		<li>会员总数：<%= User.all.count %></li>

@@ -11,4 +11,8 @@ $(document).on("page:change", function(){
   $('#follow').on('click', function(){
     $('.ui.modal').modal('show');
   });
+  $('.ctg').click(function(){
+    $(this).siblings(".ui.modal").modal('show');
+  });
+  $('select.dropdown').dropdown();
 });

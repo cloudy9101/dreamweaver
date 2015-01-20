@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  before_action :authenticate_user!
 
   def create
   	@target = Target.find(params[:comment][:target_id])

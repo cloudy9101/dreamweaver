@@ -1,0 +1,32 @@
+<h1>用户列表</h1>
+<table class="ui table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>TargetsCount</th>
+      <th>DaysCount</th>
+      <th>Followers</th>
+      <th>Followings</th>
+      <th>CreatedTime</th>
+      <th>删除</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.id %></td>
+        <td><%= user.name %></td>
+        <td><%= user.targets.count %></td>
+        <td><%= user.days.count %></td>
+        <td><%= user.followers.count %></td>
+        <td><%= user.followings.count %></td>
+        <td><%= user.created_at %></td>
+        <td><%= link_to "delete", { controller: "admins", action: "delete_user", user_id: "#{user.id}" }, method: :delete %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= will_paginate @users %>
+

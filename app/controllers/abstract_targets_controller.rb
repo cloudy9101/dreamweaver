@@ -1,4 +1,5 @@
 class AbstractTargetsController < ApplicationController
+  before_action :authenticate_user!
 
   def new
     # @new_target = Target.new

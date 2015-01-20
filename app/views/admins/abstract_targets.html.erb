@@ -1,0 +1,42 @@
+<h1>抽象目标列表</h1>
+<table class="ui table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Title</th>
+      <th>User</th>
+      <th>hits</th>
+      <th>category</th>
+      <th>great</th>
+      <th>delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @abstract_targets.each do |abstract_target| %>
+      <tr>
+        <td><%= abstract_target.id %></td>
+        <td><%= abstract_target.name %></td>
+        <td><%= abstract_target.users.count %></td>
+        <td><%= abstract_target.hits %></td>
+        <td>
+          <%= link_to abstract_target.category.name, '#', class: "ctg" %>
+          <div class="ui modal">
+            <i class="close icon"></i>
+            <div class="header">更改类别</div>
+            <div class="content">
+              <%= form_for abstract_target, url: change_category_admins_path(a_t: abstract_target.id), html: { class: "ui form"} do |f| %>
+                <%= f.label :category_id, "类别" %>
+                <%= f.select :category_id, Category.all.collect { |c| [c.name, c.id] } %>
+                <%= f.submit "提交", class: "ui submit button" %>
+              <% end %>
+            </div>
+          </div>  
+        </td>
+        <td><%= link_to abstract_target.great.to_s, mark_great_admins_path(a_t: abstract_target.id), method: :patch %></td>
+        <td><%= link_to "delete", { controller: "admins", action: "delete_abstract_target", abstract_target_id: "#{abstract_target.id}" }, method: :delete %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= will_paginate @abstract_targets %>

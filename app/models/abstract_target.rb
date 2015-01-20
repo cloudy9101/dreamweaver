@@ -1,7 +1,7 @@
 class AbstractTarget < ActiveRecord::Base
   include Timeago
 
-  has_many :targets
+  has_many :targets, dependent: :destroy
   accepts_nested_attributes_for :targets
 
   has_many :users, through: :targets

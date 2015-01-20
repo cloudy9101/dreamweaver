@@ -1,0 +1,13 @@
+<% provide(:title, "后台登陆") %>
+
+<div class="ui header">后台登陆</div>
+
+<%= form_for :admin, url: { controller: :admins, action: :session_create }, html: { class: "ui form basic segment admin-sign-in" } do |f| %>
+  <div class="inline field">
+    <%= f.text_field :name, placeholder: "Name" %>
+  </div>
+  <div class="inline field">
+    <%= f.password_field :password, placeholder: "Password" %>
+  </div>
+  <%= f.submit "登陆", class: "ui submit blue button" %>
+<% end %>

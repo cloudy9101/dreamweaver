@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="ui menu">
+    <%= link_to "前台", root_path, class: "item" %>
+    <%= link_to "目标列表", targets_admins_path, class: "item" %>
+    <%= link_to "抽象目标列表", abstract_targets_admins_path, class: "item" %>
+    <%= link_to "用户列表", users_admins_path, class: "item" %>
+
+    <div class="right menu">
+      <%= link_to "登出", log_out_admins_path, class: "item" %>
+    </div>
+  </div>
+</div>
