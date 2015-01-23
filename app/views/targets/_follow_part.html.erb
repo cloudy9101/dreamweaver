@@ -13,7 +13,7 @@
 		<% if target.followed?(current_user) %>
 			<%= link_to "我的进度", target_path(target.followed_targets.find_by(user: current_user)), class: "ui blue button" %>
 		<% else %>
-			<div class="ui blue button" id="follow">建立目标</div>
+			<div class="ui blue button" id="follow_button">建立目标</div>
 			<%= render partial: 'targets/follow_part_modal', locals: { target: target.abstract_target.targets.new } %>
 		<% end %>
 
