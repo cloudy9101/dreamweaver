@@ -18,7 +18,7 @@
         <div class="detail"><%= @abstract_target.users.count %></div>
       </div>
         <% unless @abstract_target.users.include?(current_user) %>
-          <div class="ui inverted blue mini button" id="follow" >建立目标</div>
+          <div class="ui inverted blue mini button" id="follow_button" >建立目标</div>
           <%= render partial: 'targets/follow_part_modal', locals: { target: @abstract_target.targets.new } %>
         <% else %>
           <%= link_to "我的进度", target_path(@abstract_target.targets.find_by(user: current_user)), class: "ui inverted blue mini button" %>
