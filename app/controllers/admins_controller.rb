@@ -53,7 +53,6 @@ class AdminsController < ApplicationController
   def log_out
     self.current_admin = nil
     cookies.delete(:remember_token)
-    
     redirect_to log_in_admins_path
   end
 
