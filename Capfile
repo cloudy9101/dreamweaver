@@ -25,4 +25,4 @@ require 'capistrano/rails'
 # Loads custom tasks from `lib/capistrano/tasks' if you have any defined.
 Dir.glob('lib/capistrano/tasks/*.rake').each { |r| import r }
 
-set :repository, "git@github.com/cloudy9101/dreamweaver"
+set :repository, "https://github.com/cloudy9101/dreamweaver"
