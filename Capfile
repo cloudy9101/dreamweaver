@@ -27,4 +27,5 @@ Dir.glob('lib/capistrano/tasks/*.rake').each { |r| import r }
 
 set :repository, "git@github.com/cloudy9101/dreamweaver"
 set :user, "cloudy"
+set :password, ENV["PASSWORD"]
 set :use_sudo, false
