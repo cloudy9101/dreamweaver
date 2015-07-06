@@ -6,6 +6,8 @@ gem 'rails', '4.2.0'
 
 gem 'pg'
 
+gem 'thin'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
@@ -55,7 +57,7 @@ gem 'rails-i18n', github: 'svenfuchs/rails-i18n', branch: 'master'
 
 gem 'rails_12factor', group: :production
 
-ruby "2.1.5"
+ruby "2.2.2"
 
 group :test do
 	gem 'capybara'
