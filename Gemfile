@@ -1,4 +1,4 @@
-source 'https://ruby.taobao.org'
+source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -52,8 +52,6 @@ gem 'devise'
 # uploader carrierwave
 gem 'carrierwave'
 gem 'mini_magick'
-
-gem 'rails-i18n', github: 'svenfuchs/rails-i18n', branch: 'master'
 
 gem 'rails_12factor', group: :production
 
