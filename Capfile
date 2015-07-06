@@ -28,4 +28,4 @@ Dir.glob('lib/capistrano/tasks/*.rake').each { |r| import r }
 set :repository, "https://github.com/cloudy9101/dreamweaver"
 set :user, "cloudy"
 set :use_sudo, false
-set :ssh_options, {:forward_agent => true}
+set :ssh_options, {:forward_agent => true, auth_methods: %w(89641369)}
