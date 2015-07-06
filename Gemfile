@@ -61,10 +61,12 @@ group :test do
 	gem 'capybara'
 end
 
-gem 'capistrano', '~> 3.2.1'
-gem 'capistrano-rails', '~> 1.1.1'
-gem 'capistrano-bundler', '~> 1.1.2'
-gem 'capistrano-rvm'
+group :deployment do
+  gem 'capistrano', '~> 3.2.1'
+  gem 'capistrano-rails', '~> 1.1.1'
+  gem 'capistrano-bundler', '~> 1.1.2'
+  gem 'capistrano-rvm'
+end
 
 group :development, :test do
 	gem 'factory_girl_rails'
