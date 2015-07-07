@@ -25,8 +25,6 @@ require 'capistrano/rails'
 # Loads custom tasks from `lib/capistrano/tasks' if you have any defined.
 Dir.glob('lib/capistrano/tasks/*.rake').each { |r| import r }
 
-default_run_options[:pty] = true
-
 set :repository, "git@github.com/cloudy9101/dreamweaver"
 set :user, "cloudy"
 set :use_sudo, false
