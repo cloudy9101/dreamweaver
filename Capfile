@@ -28,5 +28,3 @@ Dir.glob('lib/capistrano/tasks/*.rake').each { |r| import r }
 set :repository, "git@github.com/cloudy9101/dreamweaver"
 set :user, "cloudy"
 set :use_sudo, false
-
-ssh_options[:forward_agent] = true
