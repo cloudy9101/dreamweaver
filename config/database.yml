@@ -23,3 +23,6 @@ production:
   adapter: postgresql
   database: dreamweaverdb_pro
   pool: 5
+  host: localhost
+  username: dreamweaver
+  password: <%= ENV['DREAMWEAVER_DATABASE_PASSWORD'] %>
