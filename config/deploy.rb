@@ -2,7 +2,7 @@
 lock '3.2.1'
 
 set :application, 'dreamweaver'
-set :repo_url, 'git@github.com:cloudy9101/dreamweaver.git'
+set :repo_url, 'https://github.com/cloudy9101/dreamweaver'
 
 # Default branch is :master
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
