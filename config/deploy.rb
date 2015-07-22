@@ -17,7 +17,7 @@ set :rbenv_map_bins, %w{rake gem bundle ruby rails}
 set :rbenv_roles, :all
 
 set :user, 'www'
-set :user_sudo, false
+set :use_sudo, false
 set :ssh_options, {:forward_agent => true}
 
 # Default value for :scm is :git
