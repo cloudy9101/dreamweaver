@@ -64,3 +64,8 @@ end
 group :development, :test do
   gem 'factory_girl_rails'
 end
+
+group :deployment do
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
+end
