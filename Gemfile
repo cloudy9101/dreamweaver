@@ -58,11 +58,14 @@ gem 'rails_12factor', group: :production
 
 ruby "2.2.2"
 
+gem 'ci_reporter_rspec'
+
 group :test do
   gem 'capybara'
 end
 
 group :development, :test do
+  gem 'rspec-rails', '~> 3.0'
   gem 'factory_girl_rails'
 end
 
